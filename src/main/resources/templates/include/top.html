@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>마주스토리</title>
+<link  href="/css/top.css"  rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+</style>
+</head>
+<body>
+<header> makeCoffee 쇼핑몰 관리자 모드  </header>
+<nav> &emsp;&emsp;
+
+<a href="/product/productForm"> 상품등록(Admin) </a> &emsp;&emsp;
+<a href="/product/productList"> 상품목록보기 </a> &emsp;&emsp;
+
+<a href="/product/cartList"> 장바구니 (Admin/ MEMBER) </a> &emsp;&emsp;
+
+<a href="/chatGPT/start"> ChatGPT 시작(Admin) </a> &emsp;&emsp;
+
+<th:block th:if="${session.USERNAME == null }">
+    <a href="/login/loginForm"> 로그인 </a> &emsp;&emsp;
+</th:block>
+<th:block th:if="${session.USERNAME != null }">
+    <a href="/login/logOut"> 로그아웃 </a> &emsp;&emsp;
+</th:block>
+
+
+&emsp;<a href="/index">홈으로</a> 
+
+</nav>
