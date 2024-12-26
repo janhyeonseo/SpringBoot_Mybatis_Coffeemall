@@ -1,1 +1,4 @@
-SpringBoot_Mybatis_Coffeemall
+# 결제&openAIAPI를활용한커피숍관리서비스
+
+### 💡 서비스 개요
+- 
