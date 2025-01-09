@@ -4,15 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class InsertMPayServiceImpl  implements InsertMPayService {
+public class InsertMpayServiceImpl implements InsertMpayService{
 
 	@Autowired
-	private InsertMPayDao  dao;
+	private InsertMpayDao dao;
 	
 	@Override
-	public int insertMPayService(PortOneVO vo) {
-		
-		return dao.insertMPayService(vo);	
+	public int InsertMpayService(PortOneVO vo) {
+		return dao.InsertMpayService(vo);
 		
 	}
+
 }

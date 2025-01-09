@@ -1,19 +1,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-<div  th:replace="~{include/top}"></div>
-<section>
-<br>
-<div  align="center">
+	<div th:replace="~{include/top}"></div>
+	<section>
+		<br>
+		<div align="center">
 
-<br><br><br>
+			<h1> 권한 없음 (권한을 확인해 보세요)</h1>
+			
 
- <h2> 권한 없음 (권한을 확인해 주세요!!) </h2>
+		</div>
+		<br>
+	</section>
 
-</div>
-<br>
-</section>
-
-<div  th:replace="~{include/bottom::footer}"></div>
+	<div th:replace="~{include/bottom::footer}"></div>
 </body>
 </html>

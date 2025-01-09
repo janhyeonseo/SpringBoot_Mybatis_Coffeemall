@@ -24,12 +24,12 @@ public class LoginController {
 	}
 	
 	@GetMapping("/loginForm")
-	void productForm(Model  model){
+	void loginForm(Model  model){
 		   System.out.println("==> loginForm ");	
 
 	}
 	
-	// 시큐리티 적용시 사용되지 않는다. 
+    // 시큐리티 적용시 사용되지 않는다. 
 	@PostMapping("/loginFormOK")
 	String loginFormOK(Model  model , LoginVO vo ){
 		   System.out.println("==> loginFormOK ");	

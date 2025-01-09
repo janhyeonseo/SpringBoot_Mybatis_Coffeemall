@@ -1,33 +1,42 @@
-@charset "UTF-8";
- header{
-  	background:#0000ff;  /* ë°°ê²½ìƒ‰ê¹” */
-  	height:90px; 		 /* ì˜ì—­ì˜ ë†’ì´ */
-  	line-height:90px;	 /* ë¼ì¸ ë†’ì´ */
-  	color:#ffffff; 		 /* ê¸€ììƒ‰ê¹” (ë¹¨, ë…¹, íŒŒ) */
-  	font-size:30px;		 /* ê¸€ìí¬ê¸° */
-  	text-align:center;   /* ê¸€ì ê°€ìš´ë° ì •ë ¬ */
+@charset "EUC-KR";
+body{
+	 font-family: Arial, sans-serif;
+}
+  header{
+  	background:#728C65;  /* ¹è°æ»ö±ò */
+  	height:90px; 		 /* ¿µ¿ªÀÇ ³ôÀÌ */
+  	line-height:90px;	 /* ¶óÀÎ ³ôÀÌ */
+  	color:#fafad0; 		 /* ±ÛÀÚ»ö±ò (»¡, ³ì, ÆÄ) */
+  	font-size:30px;		 /* ±ÛÀÚÅ©±â */
+  	text-align:center;   /* ±ÛÀÚ °¡¿îµ¥ Á¤·Ä */
   }
   nav{
-	background:#0088ff;  /* ë°°ê²½ìƒ‰ê¹” */
-  	height:40px; 		 /* ì˜ì—­ì˜ ë†’ì´ */
-  	line-height:40px;	 /* ë¼ì¸ ë†’ì´ */
-  	color:#ffffff; 		 /* ê¸€ììƒ‰ê¹” (ë¹¨, ë…¹, íŒŒ) */
-  	font-size:16px;		 /* ê¸€ìí¬ê¸° */
-  	text-align:left;   /* ê¸€ì ê°€ìš´ë° ì •ë ¬ */
+	background:#AEC7A9; /* ¹è°æ»ö±ò */
+  	height:40px; 		 /* ¿µ¿ªÀÇ ³ôÀÌ */
+  	line-height:40px;	 /* ¶óÀÎ ³ôÀÌ */
+  	color:#ffffff; 		 /* ±ÛÀÚ»ö±ò (»¡, ³ì, ÆÄ) */
+  	font-size:16px;		 /* ±ÛÀÚÅ©±â */
+  	text-align:left;   /* ±ÛÀÚ °¡¿îµ¥ Á¤·Ä */
+  	text-align: center;
   }
 	
+  nav a {
+    margin: 0 10px; /* ¸µÅ© »çÀÌ °£°İ */
+  }
+  
   section{
-	background:#eaeaea;  /* ë°°ê²½ìƒ‰ê¹” */
-  	min-height:450px; 		 /* ì˜ì—­ì˜ ë†’ì´ */
-  	line-height:40px;	 /* ë¼ì¸ ë†’ì´ */
-  	font-size:14px;		 /* ê¸€ìí¬ê¸° */
+	background:#fffff0;  /* ¹è°æ»ö±ò */
+  	min-height:500px; 		 /* ¿µ¿ªÀÇ ³ôÀÌ */
+  	line-height:40px;	 /* ¶óÀÎ ³ôÀÌ */
+  	font-size:14px;		 /* ±ÛÀÚÅ©±â */
+  	text-align: center;
   }
 	
   footer{
-	background:#0000ff;  /* ë°°ê²½ìƒ‰ê¹” */
-  	height:40px; 		 /* ì˜ì—­ì˜ ë†’ì´ */
-  	line-height:40px;	 /* ë¼ì¸ ë†’ì´ */
-  	color:#ffffff; 		 /* ê¸€ììƒ‰ê¹” (ë¹¨, ë…¹, íŒŒ) */
-  	font-size:16px;		 /* ê¸€ìí¬ê¸° */
-  	text-align:center;   /* ê¸€ì ê°€ìš´ë° ì •ë ¬ */
+	background:#487059;  /* ¹è°æ»ö±ò */
+  	height:40px; 		 /* ¿µ¿ªÀÇ ³ôÀÌ */
+  	line-height:40px;	 /* ¶óÀÎ ³ôÀÌ */
+  	color:#f9ECCA; 		 /* ±ÛÀÚ»ö±ò (»¡, ³ì, ÆÄ) */
+  	font-size:16px;		 /* ±ÛÀÚÅ©±â */
+  	text-align:center;   /* ±ÛÀÚ °¡¿îµ¥ Á¤·Ä */
   }

@@ -13,42 +13,40 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class PortOneController {
 	PortOneController(){
-		  System.out.println("==> PortOneController 확인 ");	
+		System.out.println("==> PortOneController");
 	}
 	
 	@Autowired
-	InsertMPayService  service;  
+	InsertMpayService service;
 	
 	@ResponseBody
 	@PostMapping("/insertMPay")
-	public  String  productForm(@RequestBody PortOneVO vo ,Model  model){
-		   // mpaynum : 결제번호 , mpayprice : 결제가격
-		   System.out.println("==> insertMPay : " + vo.getMpaynum() +":"+ vo.getMpayprice());	
-		   
-		   String OK ="";
-		   int  k = service.insertMPayService(vo) ;
-		   System.out.println("===>k 확인 :" + k );
-		   
-		   if ( k == 1 ) {
-		    OK = "/PortOneT/result";
-		   } else {
-		    OK = "/PortOneT/fail";
+	String insertMPay(@RequestBody PortOneVO vo, Model  model){
+		   System.out.println("==> insertMPay : "+vo.getMpaynum()+ ":" + vo.getMpayprice());
+		   String OK = "";
+		   int k =  service.InsertMpayService(vo);
+		   if(k == 1) {
+			   OK = "/PortOneT/result";
+		   }else {
+			   OK = "/PortOneT/fail";
 		   }
-		return OK ;	
+		  
+		return OK;
 	}
 	
 	@GetMapping("/result")
-	public String result( Model model) {		
-		System.out.println("===> result 확인");
-		model.addAttribute("result", "감사합니다. 조금만 기다려주세요!!");
-		return "product/result.html" ;		
+	String result(Model  model){
+		   System.out.println("==> result ");
+		   model.addAttribute("result","hello");
+		return "/product/result";	
 	}
 	
 	@GetMapping("/fail")
-	public String fail( Model model) {		
-		System.out.println("===> fail 확인");
-		model.addAttribute("result", "fail");
-		return "product/result.html" ;		
+	String fail(Model  model){
+		   System.out.println("==> result ");
+		   model.addAttribute("result","fail");
+		return "/product/fail";	
 	}
-	
 }
+
+

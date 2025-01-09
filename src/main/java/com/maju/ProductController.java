@@ -107,25 +107,21 @@ public class ProductController {
 	}
 	
 	@GetMapping("/cartList")
-	void cartList( Model  model ){
-		 System.out.println("==> productList ");	
+	void cartList( Model  model,  ProductVO vo){
+		 System.out.println("==> productList " );	
 		 List<ProductVO>  li = service.cartList(null);
 		 
-		 int totalPay = 0 ;
-		 if ( li.size() > 0 ) {
-			 
-			 for(int i = 0 ; i <li.size()  ; i++) {
-				 totalPay = totalPay + li.get(i).getPprice() * li.get(i).getAmount();
-		}	 
-			 
+		 if(li.size() >0) {
 			 ProductVO  mm = li.get(0);		
-			 model.addAttribute("totalPay", totalPay);
 			 model.addAttribute("mm", mm.getCid());
-			 model.addAttribute("li", service.cartList(null));
-		 } else {
-			 model.addAttribute("li", service.cartList(null));
 		 }
-	
+		 int total = 0;
+		 for(ProductVO m : li) {
+			 total = total + m.getPprice()*m.getAmount();
+		 }
+		 model.addAttribute("li", service.cartList(null));
+		 model.addAttribute("total", total);
+	    
 	}
 	
 	@GetMapping("/cartDel")

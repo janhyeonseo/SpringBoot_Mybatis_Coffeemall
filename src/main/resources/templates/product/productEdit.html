@@ -1,62 +1,69 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-<div  th:replace="~{include/top}"></div>
+	<div th:replace="~{include/top}"></div>
 
-<script>
- function  listK(){
-	 f1.action="/product/productList"
- }
+	<script>
+		function listK() {
+			f1.action = "/product/productList"
+		}
+	</script>
 
-</script>
+	<section>
+		<br>
+		<div align="center">
 
-<section>
-<br>
-<div  align="center">
+			<h1>상품주문하기</h1>
+			<form name="f1" action="/product/cartInsert" method="post">
 
-<h1> 상품주문하기 </h1>
-	<form name="f1"   action="/product/cartInsert" 
-	      method="post"  >
+				<input type=hidden name=pimgStr size=30 th:value="${m.pimgStr}" />
+				<table border="1" width=600>
+					<tr align=>
+						<td class="td1" width=20% align="center">상품번호</td>
+						<td>&emsp;<input type=text name=pid th:value="${m.pid}" />
+						</td>
 
-    <input  type=hidden  name=pimgStr size=30  th:value="${m.pimgStr}"   />
-	<table border="1" width=600 >
-	<tr align=> <td class="td1" width=20%  align="center"> 상품번호  </td>
-	     <td>&emsp;<input  type=text  name=pid  th:value="${m.pid}" />  </td> 
-	     
-	     <td rowspan=3 > <img th:src="@{/product/files/}+${m.pimgStr}"   width=150  height=150 />  </td>
-	     
-	      </tr>
-	<tr> <td class="td1"  align="center"> 상품이름  </td>
-	     <td >&emsp;<input  type=text  name=pname size=30  th:value="${m.pname}"   />  </td></tr>
-	<tr> <td class="td1"  align="center"> 상품가격  </td>
-	     <td  >
-	     &emsp;<input  type=text  name=pprice  th:value="${m.pprice}" size=15   />
-	      <select name=amount >
-	        <option value=1> 한잔(1)  </option>
-	        <option value=2> 두잔(2)  </option>
-	        <option value=3> 세잔(3)  </option>	      
-	      </select>
-	     </td>
-	</tr>
+						<td rowspan=3><img th:src="@{/product/files/}+${m.pimgStr}"
+							width=150 height=150 /></td>
 
-	<tr> <td class="td1"  align="center"> 상품상세  </td>
-	     <td  colspan=2>&emsp;<textarea  cols=59  rows=4 name=pdesc>[[${m.pdesc}]]</textarea>   </td></tr>
+					</tr>
+					<tr>
+						<td class="td1" align="center">상품이름</td>
+						<td>&emsp;<input type=text name=pname size=30
+							th:value="${m.pname}" />
+						</td>
+					</tr>
+					<tr>
+						<td class="td1" align="center">상품가격</td>
+						<td>&emsp;<input type=text name=pprice
+							th:value="${m.pprice}" size=15 /> <select name=amount>
+								<option value=1>한잔(1)</option>
+								<option value=2>두잔(2)</option>
+								<option value=3>세잔(3)</option>
+						</select>
+						</td>
+					</tr>
 
-	<tr> <td colspan=3 align="center" >
-	       <input  type=submit  value="상품주문하기" /> &emsp;
-	       <input  type=submit  value="상품목록보기"  onClick="listK()" /> &emsp;
+					<tr>
+						<td class="td1" align="center">상품상세</td>
+						<td colspan=2>&emsp;<textarea cols=59 rows=4 name=pdesc>[[${m.pdesc}]]</textarea>
+						</td>
+					</tr>
 
-	      </td>
-	</tr>
+					<tr>
+						<td colspan=3 align="center"><input type=submit
+							value="상품주문하기" /> &emsp; <input type=submit value="상품목록보기"
+							onClick="listK()" /> &emsp;</td>
+					</tr>
 
-</table>
+				</table>
 
-</form>
+			</form>
 
-</div>
-<br>
-</section>
+		</div>
+		<br>
+	</section>
 
-<div  th:replace="~{include/bottom::footer}"></div>
+	<div th:replace="~{include/bottom::footer}"></div>
 </body>
 </html>

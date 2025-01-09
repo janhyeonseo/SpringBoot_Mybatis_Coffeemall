@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
- "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.majustory.login.LoginDao">
 
-<select id="getUser"  resultType="com.majustory.login.LoginVO"  >
- <![CDATA[
-     select pid, username, password, role, name , pimg, today
-     from  member where username = #{username}
-  ]]>
-</select>
+	<select id="getUser" resultType="com.majustory.login.LoginVO">
+		select pid, username, password, role, name, pimg, today
+		from member where username = #{username}
+	</select>
 
 </mapper>

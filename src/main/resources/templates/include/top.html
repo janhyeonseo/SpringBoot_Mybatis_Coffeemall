@@ -1,31 +1,35 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
 <title>마주스토리</title>
-<link  href="/css/top.css"  rel="stylesheet" type="text/css" />
-<style type="text/css">
 
-</style>
+<link href="/css/style.css" rel="stylesheet"
+	type="text/css" />
+<link href="/css/top.css" rel="stylesheet"
+	type="text/css" />
+	
 </head>
 <body>
-<header> makeCoffee 쇼핑몰 관리자 모드  </header>
+<scan sec:authorize="isAuthenticated">
+<b><scan sec:authentication="principal.username">환영합니다.</b>
+<a href="/login/logOut"> 로그아웃 </a> &emsp;&emsp;
+
+<a sec:authorize="hasRole('ROLE_ADMIN')">관리자 관리 영역</a>
+</scan>
+<header> makeCoffee 쇼핑몰  </header>
 <nav> &emsp;&emsp;
 
-<a href="/product/productForm"> 상품등록(Admin) </a> &emsp;&emsp;
+<a href="/product/productForm"> 상품등록 </a> &emsp;&emsp;
 <a href="/product/productList"> 상품목록보기 </a> &emsp;&emsp;
 
-<a href="/product/cartList"> 장바구니 (Admin/ MEMBER) </a> &emsp;&emsp;
+<a href="/product/cartList"> 장바구니 </a> &emsp;&emsp;
 
-<a href="/chatGPT/start"> ChatGPT 시작(Admin) </a> &emsp;&emsp;
+<a href="/chatGPT/start"> ChatGPT 시작 </a> &emsp;&emsp;
 
-<th:block th:if="${session.USERNAME == null }">
-    <a href="/login/loginForm"> 로그인 </a> &emsp;&emsp;
-</th:block>
-<th:block th:if="${session.USERNAME != null }">
-    <a href="/login/logOut"> 로그아웃 </a> &emsp;&emsp;
-</th:block>
-
+<a href="/login/loginform"> 로그인 </a> &emsp;&emsp;
 
 &emsp;<a href="/index">홈으로</a> 
-
 </nav>
+
+</body>

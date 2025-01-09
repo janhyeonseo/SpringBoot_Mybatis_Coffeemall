@@ -1,5 +1,4 @@
 package com.majustory.security;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +31,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(authorize -> authorize	              
 	              .requestMatchers("/chatGPT/**","/product/productForm").hasRole("ADMIN")
 	              .requestMatchers("/product/cartList").hasAnyRole("ADMIN", "MEMBER")	 
-	              .requestMatchers("/product/**").authenticated()
+	              .requestMatchers("/product/**","login/loginform").authenticated()
 	              .anyRequest().permitAll())
 				
 		.csrf(csrf ->csrf.disable())	
