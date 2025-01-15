@@ -13,13 +13,20 @@
             padding: 10px;
             text-align: center;
             border: 1px solid #ccc;
+			white-space: nowrap;
         }
+		td a {
+		  white-space: nowrap; /* í…ìŠ¤íŠ¸ ì¤„ë°”ê¿ˆ ë°©ì§€ */
+		  overflow: hidden; /* ë„˜ì¹œ í…ìŠ¤íŠ¸ ìˆ¨ê¹€ */
+		  text-overflow: ellipsis; /* ë„˜ì¹œ í…ìŠ¤íŠ¸ì— '...' í‘œì‹œ */
+		  display: inline-block; /* í…ìŠ¤íŠ¸ ì²˜ë¦¬ë¥¼ ìœ„í•œ ë¸”ë¡í™” */
+		}
         th {
             background-color: #eefadc;
             font-weight: bold;
         }
         tr:hover {
-            background-color: #d6dbce; /* Çà¿¡ ¸¶¿ì½º¸¦ ¿Ã·ÈÀ» ¶§ »ö»ó º¯°æ */
+            background-color: #d6dbce; /* ï¿½à¿¡ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
         }
         input[type=text], input[type=submit], input[type=reset], input[type=button], input[type=number], button {
             padding: 5px;
@@ -30,13 +37,13 @@
             text-align: center;
         }
         input[type=submit], input[type=reset], input[type=button], button {
-            background-color: #88a65d;
+            background-color: #252E40;;
             color: white;
             cursor: pointer;
             padding: 5px 12px;
         }
         input[type=submit]:hover, input[type=reset]:hover, input[type=button]:hover {
-            background-color: #6b8e23; /* ¹öÆ°¿¡ ¸¶¿ì½º¸¦ ¿Ã·ÈÀ» ¶§ »ö»óÀ» ÁøÇÏ°Ô º¯°æ */
+            background-color: #252E40; /* ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ */
         }
         .left-align {
             text-align: left;
