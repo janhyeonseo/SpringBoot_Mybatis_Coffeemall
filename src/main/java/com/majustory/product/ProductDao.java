@@ -16,4 +16,6 @@ public interface ProductDao {
 	public  void cartDel (ProductVO vo);
 	
 	public  List<ProductVO>  cartList(ProductVO vo);
+	
+	public int totalcount(ProductVO vo);
 }

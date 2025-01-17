@@ -13,4 +13,5 @@ public interface ProductService {
    
    public  void cartDel (ProductVO vo);
    
+   public int totalcount(ProductVO vo);
 }

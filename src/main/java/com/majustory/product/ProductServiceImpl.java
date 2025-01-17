@@ -52,4 +52,10 @@ public class ProductServiceImpl implements ProductService {
 		dao.cartDel(vo);		
 	}
 
+	@Override
+	public int totalcount(ProductVO vo) {
+		// TODO Auto-generated method stub
+		return dao.totalcount(vo);
+	}
+
 }

@@ -5,25 +5,49 @@
 	<div th:replace="~{include/top}"></div>
 	<section>
 		<br>
-
+		<div>
+			1.페이지 사이즈 : [[${pageSize}]] &emsp;&emsp; 
+			2.페이지 List사이즈(아래숫자갯수) :[[${pageListSize}]]&emsp;&emsp; 
+			3.전체레코드 수 :[[${totalCount}]]&emsp;&emsp; 
+			4.총페이지수 : [[${totalPage}]] <br>
+			5.현재레코드 : [[${start}]]&emsp;&emsp; 
+			6.현재페이지 :[[${currentPage}]]&emsp;&emsp; 
+			7.가로하단 시작 :[[${listStartPage}]]&emsp;&emsp; 
+			8.가로 하단 마지막 : [[${listEndPage}]]
+		</div>
 		<div align="center">
 			<h2> 상품 목록 보기 </h2>
 		</div>
+		<div class="header-container">
+		    <h1># 총 <span class="total-count">[[${totalCount}]]</span> 건</h1>
+		    <form action="/product/productList" class="search-form">
+		        <div class="search-container">
+		            <div class="search-bar">
+		                <input type="hidden" name="ch1" value="pname"/> </input> 
+		                <input type="text" name="ch2" placeholder="검색어를 입력하세요"> 
+		                <input type="submit" value="검색⌕">
+		            </div>  
+		        </div>
+		    </form>
+		</div>	
 		<div align="center">
+		    <table>
+		        <!-- li가 null이거나 크기가 0인 경우 -->
+		        <tr th:if="${li == null or li.size() == 0}">
+		            <td colspan="4" align="center">데이터가 없습니다.</td>
+		        </tr>
 
-			<table>
-				<tr th:each="rowStat : ${#numbers.sequence(0, li.size() - 1, 4)}">
-					<td th:each="m : ${li.subList(rowStat, rowStat + 4)}" align="center">
-						<a th:href="@{/product/productEdit(pid=${m.pid})}">
-							<img th:src="${m.pimgStr}"/>
-						</a>
-						<p th:text="${m.pname}" align="center">
-						</p>
-						<br />
-					</td>
-				</tr>
-			</table>
-
+		        <!-- li가 존재하는 경우 -->
+		        <tr th:if="${li != null and li.size() > 0}" th:each="rowStat : ${#numbers.sequence(0, li.size() - 1, 4)}">
+		            <td th:each="m : ${li.subList(rowStat, rowStat + 4 > li.size() ? li.size() : rowStat + 4)}" align="center">
+		                <a th:href="@{/product/productEdit(pid=${m.pid})}">
+		                    <img th:src="${m.pimgStr}"/>
+		                </a>
+		                <p th:text="${m.pname}" align="center"></p>
+		                <br />
+		            </td>
+		        </tr>
+		    </table>
 		</div>
 		<br>
 	</section>
