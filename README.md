@@ -10,6 +10,9 @@
     <div> <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white">
           <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat-square&logo=Spring Boot&logoColor=white">
           <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=flat-square&logo=Spring Security&logoColor=white">
+          <img src="https://img.shields.io/badge/Spring MVC-6DB33F?style=flat-square&logo=Spring MVC&logoColor=white">
+          <img src="https://img.shields.io/badge/Python-6DB33F?style=flat-square&logo=Python&logoColor=white">
+        <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=flat-square&logo=Sele&logoColor=white">
           <img src="https://img.shields.io/badge/Mybatis-003496?style=flat-square&logo=Mybatis&logoColor=white">
           <img src="https://img.shields.io/badge/OpenAPI-004596?style=flat-square&logo=OpenAPI&logoColor=white">
           <br>
