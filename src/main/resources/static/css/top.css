@@ -4,13 +4,17 @@ body {
   font-family: Arial, sans-serif;
   color: #333333; /* 기본 텍스트 색상 */
   background-color: #FFFFFF; /* 밝은 베이지 배경 */
+  text-align: center;
 }
 
 header {
   display: flex;
   justify-content: space-between; /* 로고와 네비게이션을 좌우로 배치 */
   align-items: center;
-  padding: 10px 20px;
+  padding-left: 18%;
+  padding-right: 18%;
+  padding-top: 1%;
+  padding-bottom: 1%;
   background: #FFFFFF; 
   color: #252E40;
   border-bottom: 1px solid #EAEAEA; /* 구분선 */
@@ -18,12 +22,13 @@ header {
 }
 
 header .header-text {
-  font-size: 20px;
+  font-size: 100%;
   font-weight: bold;
 }
 
 header nav {
   margin-left: auto; /* 네비게이션을 오른쪽으로 이동 */
+  font-size: 80%;
 }
 
 header nav a {
@@ -37,8 +42,9 @@ nav a:hover {
 
 section {
   background: #FFFFFF; /* 흰색 섹션 배경 */
-  padding: 20px; /* 내부 여백 */
-  font-size: 16px; /* 글자 크기 */
+  padding-left: 19%;
+  padding-right: 19%; /* 내부 여백 */
+  font-size: 80%; /* 글자 크기 */
   text-align: center; /* 가운데 정렬 */
   color: #252E40;
   min-height: 400px; /* 최소 높이 */

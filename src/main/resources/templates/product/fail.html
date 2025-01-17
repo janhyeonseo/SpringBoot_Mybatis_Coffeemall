@@ -1,18 +1,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-<div  th:replace="~{include/top}"></div>
+	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<div th:replace="~{include/top}"></div>
 
-<section>
-<br>
-<div align="center"  > <h2> 장바구니 결제 실패   </h2> </div>
-<div align="center"  > 
-  <textarea rows="10" cols="100">   [[${result}]] </textarea>
- </div>
-<br>
-</section>
+	<section>
+		<br>
+		<div align="center">
+			<h2> 장바구니 결제 실패 </h2>
+		</div>
+		<div align="center">
+			<textarea rows="10" cols="100">   [[${result}]] </textarea>
+		</div>
+		<br>
+	</section>
 
 
-<div  th:replace="~{include/bottom::footer}"></div>
+	<div th:replace="~{include/bottom::footer}"></div>
 </body>
+
 </html>

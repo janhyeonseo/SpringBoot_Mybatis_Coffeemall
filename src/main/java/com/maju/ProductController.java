@@ -2,6 +2,7 @@ package com.maju;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -79,16 +80,17 @@ public class ProductController {
 		   return "redirect:/product/productList";		
 		}		
 	
+	
 	@GetMapping("/productList")
-	void productListL( Model  model ){		
+	void productListL( Model  model ){	
 		 model.addAttribute("li", service.list(null));
-		 System.out.println("==> productList ");		 
+		 System.out.println("==> productListL ");		 
 	}
 	
 	@PostMapping("/productList")
-	void productListF( Model  model ){		
+	void productListF( Model  model ){	
 		 model.addAttribute("li", service.list(null));
-		 System.out.println("==> productList ");		 
+		 System.out.println("==> productListF ");		 
 	}
 	
 	@GetMapping("/productEdit")

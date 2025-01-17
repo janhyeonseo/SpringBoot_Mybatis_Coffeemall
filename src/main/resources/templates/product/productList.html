@@ -1,34 +1,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-<div  th:replace="~{include/top}"></div>
-<section>
-<br>
+	<link href="/css/style_productList.css" rel="stylesheet" type="text/css" />
+	<div th:replace="~{include/top}"></div>
+	<section>
+		<br>
 
-<div align="center"  > <h2> 상품 목록 보기 </h2> </div>
-<div align="center"  > 
+		<div align="center">
+			<h2> 상품 목록 보기 </h2>
+		</div>
+		<div align="center">
 
+			<table>
+				<tr th:each="rowStat : ${#numbers.sequence(0, li.size() - 1, 4)}">
+					<td th:each="m : ${li.subList(rowStat, rowStat + 4)}" align="center">
+						<a th:href="@{/product/productEdit(pid=${m.pid})}">
+							<img th:src="${m.pimgStr}"/>
+						</a>
+						<p th:text="${m.pname}" align="center">
+						</p>
+						<br />
+					</td>
+				</tr>
+			</table>
 
-<table border=1  width=1000 >
-<tr  align="center"> 
-  <td> 상품번호 </td><td> 상품이미지 </td> <td> 상품이름 </td> <td>상품가격 </td>
-  <td> 날짜 </td><td>조회수 </td>
-</tr>
+		</div>
+		<br>
+	</section>
 
-<tr th:each="m, mStat: ${li} "  align="center"    >
-  <td th:text="${m.pid}"></td>
-  <td > <img th:src="@{/product/files/}+${m.pimgStr}"   width=50  height=50 />  </td>
-  <td > <a th:href="@{/product/productEdit(pid=${m.pid})}" th:text="${m.pname}" > </a> </td>
-  <td th:text="${m.pprice}" ></td>
-  <td th:text="${m.today}" ></td>
-  <td th:text="${m.cnt}" ></td>
-</tr>
-</table>
-
-</div>
-<br>
-</section>
-
-<div  th:replace="~{include/bottom::footer}"></div>
+	<div th:replace="~{include/bottom::footer}"></div>
 </body>
+
 </html>

@@ -8,14 +8,14 @@
 
 	<select id="list" resultType="com.majustory.product.ProductVO">
 	 <![CDATA[
-	     select pid, pname, pprice, pdesc, pimg as pimgStr , today, cnt 
+	     select pid, pname, pename, pprice, pdesc, pinfo, pimg as pimgStr , psize, cnt 
 	     from  product
 	  ]]>
 	</select>
 
 	<select id="edit" resultType="com.majustory.product.ProductVO">
 	 <![CDATA[
-	     select pid, pname, pprice, pdesc, pimg as pimgStr , today, cnt 
+	     select pid, pname, pename, pprice, pdesc, pinfo, pimg as pimgStr , psize, cnt 
 	     from  product where pid = #{pid}
 	  ]]>
 	</select>
