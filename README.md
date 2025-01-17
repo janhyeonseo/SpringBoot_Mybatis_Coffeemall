@@ -10,11 +10,10 @@
     <div> <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white">
           <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat-square&logo=Spring Boot&logoColor=white">
           <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=flat-square&logo=Spring Security&logoColor=white">
-          <img src="https://img.shields.io/badge/Spring MVC-6DB33F?style=flat-square&logo=Spring MVC&logoColor=white">
-          <img src="https://img.shields.io/badge/Python-6DB33F?style=flat-square&logo=Python&logoColor=white">
-        <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=flat-square&logo=Sele&logoColor=white">
           <img src="https://img.shields.io/badge/Mybatis-003496?style=flat-square&logo=Mybatis&logoColor=white">
           <img src="https://img.shields.io/badge/OpenAPI-004596?style=flat-square&logo=OpenAPI&logoColor=white">
+          <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=Python&logoColor=white">
+          <img src="https://img.shields.io/badge/Selenium-43B02A?style=flat&logo=Selenium&logoColor=white">
           <br>
           <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white">
           <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white">
