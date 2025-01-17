@@ -86,7 +86,7 @@ public class ProductController {
 		 System.out.println("==> productListL ");	
 		 
 		    int start = 0;
-			int pageSize = 3;
+			int pageSize = 12;
 			int pageListSize = 5;
 			
 			int totalCount = service.totalcount(vo);

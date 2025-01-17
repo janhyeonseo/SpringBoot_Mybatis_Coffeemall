@@ -15,7 +15,7 @@ header {
   padding-right: 18%;
   padding-top: 1%;
   padding-bottom: 1%;
-  background: #FFFFFF; 
+  background: #F6F5EF; 
   color: #252E40;
   border-bottom: 1px solid #EAEAEA; /* 구분선 */
   border-top: 1px solid #EAEAEA; /* 구분선 */
@@ -37,7 +37,7 @@ header nav a {
 }
 
 nav a:hover {
-  color: #BF5E49; /* 골드 톤 호버 */
+  color: #02733E; 
 }
 
 section {
