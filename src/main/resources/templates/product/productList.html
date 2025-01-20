@@ -21,69 +21,74 @@
 			<h2> 상품 목록 보기 </h2>
 		</div>
 		<div class="header-container">
-		    <div class="left-section">
-		        <h1 class="total-count"># 총 <span>[[${totalCount}]]</span> 메뉴</h1>
-		    </div>
-		    <div class="right-section">
-		        <form action="/product/productList" class="search-form">
-		            <p class="search-container">
-		                <input type="hidden" name="ch1" value="pname">
-		                <input type="text" name="ch2" class="search-input" placeholder=" 검색어를 입력하세요。">
-		                <button type="submit" class="search-button">검색</button>
-		            </div>
-		        </form>
-		    </div>
+			<div class="left-section">
+				<h1 class="total-count"># 총 <span>[[${totalCount}]]</span> 메뉴</h1>
+			</div>
+			<div class="right-section">
+				<form action="/product/productList" class="search-form">
+					<p class="search-container">
+						<input type="hidden" name="ch1" value="pname">
+						<input type="text" name="ch2" class="search-input" placeholder=" 검색어를 입력하세요。">
+						<button type="submit" class="search-button">검색</button>
+			</div>
+			</form>
+		</div>
 		</div>
 		<br><br>
 		<div align="center">
-		    <table>
-		        <!-- li가 null이거나 크기가 0인 경우 -->
-		        <tr th:if="${li == null or li.size() == 0}">
-		            <td colspan="4" align="center">음료가 없습니다.</td>
-		        </tr>
+			<table>
+				<!-- li가 null이거나 크기가 0인 경우 -->
+				<tr th:if="${li == null or li.size() == 0}">
+					<td colspan="4" align="center">음료가 없습니다.</td>
+				</tr>
 
-		        <!-- li가 존재하는 경우 -->
-		        <tr th:if="${li != null and li.size() > 0}" th:each="rowStat : ${#numbers.sequence(0, li.size() - 1, 4)}">
-		            <td th:each="m : ${li.subList(rowStat, rowStat + 4 > li.size() ? li.size() : rowStat + 4)}" align="center">
-		                <a th:href="@{/product/productEdit(pid=${m.pid})}">
-		                    <img th:src="${m.pimgStr}"/>
-		                </a>
-		                <p th:text="${m.pname}" align="center"></p>
-		                <br />
-		            </td>
-		        </tr>
-		    </table>
+				<!-- li가 존재하는 경우 -->
+				<tr th:if="${li != null and li.size() > 0}"
+					th:each="rowStat : ${#numbers.sequence(0, li.size() - 1, 4)}">
+					<td th:each="m : ${li.subList(rowStat, rowStat + 4 > li.size() ? li.size() : rowStat + 4)}"
+						align="center">
+						<a th:href="@{/product/productEdit(pid=${m.pid})}">
+							<!-- 이미지 출력 조건문 -->
+							<img th:if="${m.pimgStr != null and #strings.startsWith(m.pimgStr, 'http')}" 
+							     th:src="${m.pimgStr}" />
+							<img th:if="${m.pimgStr != null and !#strings.startsWith(m.pimgStr, 'http')}" 
+							     th:src="@{/product/files/}+${m.pimgStr}" />
+						</a>
+						<p th:text="${m.pname}" align="center"></p>
+						<br />
+					</td>
+				</tr>
+			</table>
 			<br><br>
 			<ul class="pagination">
-			    <li><a th:href="@{/product/productList(start=1,ch=${ch1}, ch2=${ch2})}">◀</a></li>
-			
-			    <li th:if="${listStartPage > pageListSize}"
-			        th:with="start=${(listStartPage - pageListSize - 1) * pageSize + 1}">
-			        <a th:href="@{/product/productList(start=${start},ch=${ch1}, ch2=${ch2})}">◁</a>
-			    </li>
-			
-			    <li th:if="${listStartPage <= pageListSize}"></li>
-			
-			    <th:block th:each="i : ${#numbers.sequence(listStartPage, listEndPage )}">
-			        <li th:with="start=${(i-1) * pageSize + 1}" th:class="${i == currentPage ? 'active' : ''}">
-			            <a th:if="${i <= totalPage}"
-			               th:href="@{/product/productList(start=${start}, ch1=${ch1} ,ch2=${ch2})}"
-			               th:text="${i}"></a>
-			        </li>
-			    </th:block>
-			
-			    <li th:if="${listEndPage < totalPage}"
-			        th:with="start=${listEndPage * pageSize + 1}">
-			        <a th:href="@{/product/productList(start=${start},ch=${ch1}, ch2=${ch2})}">▷</a>
-			    </li>
-			
-			    <li th:if="${listEndPage >= totalPage}"></li>
-			
-			    <li th:with="endPage=${lastPage}">
-			        <a th:href="@{/product/productList(start=${endPage},ch=${ch1}, ch2=${ch2})}">▶</a>
-			    </li>
+				<li><a th:href="@{/product/productList(start=1,ch=${ch1}, ch2=${ch2})}">◀</a></li>
+
+				<li th:if="${listStartPage > pageListSize}"
+					th:with="start=${(listStartPage - pageListSize - 1) * pageSize + 1}">
+					<a th:href="@{/product/productList(start=${start},ch=${ch1}, ch2=${ch2})}">◁</a>
+				</li>
+
+				<li th:if="${listStartPage <= pageListSize}"></li>
+
+				<th:block th:each="i : ${#numbers.sequence(listStartPage, listEndPage )}">
+					<li th:with="start=${(i-1) * pageSize + 1}" th:class="${i == currentPage ? 'active' : ''}">
+						<a th:if="${i <= totalPage}"
+							th:href="@{/product/productList(start=${start}, ch1=${ch1} ,ch2=${ch2})}"
+							th:text="${i}"></a>
+					</li>
+				</th:block>
+
+				<li th:if="${listEndPage < totalPage}" th:with="start=${listEndPage * pageSize + 1}">
+					<a th:href="@{/product/productList(start=${start},ch=${ch1}, ch2=${ch2})}">▷</a>
+				</li>
+
+				<li th:if="${listEndPage >= totalPage}"></li>
+
+				<li th:with="endPage=${lastPage}">
+					<a th:href="@{/product/productList(start=${endPage},ch=${ch1}, ch2=${ch2})}">▶</a>
+				</li>
 			</ul>
-	
+
 		</div>
 		<br><br><br><br><br>
 	</section>

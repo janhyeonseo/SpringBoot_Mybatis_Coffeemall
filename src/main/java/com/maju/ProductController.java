@@ -141,7 +141,8 @@ public class ProductController {
 		    model.addAttribute("ch2",vo.getCh2());
 		    model.addAttribute("li", service.list(vo));
 	}
-	
+
+
 	@PostMapping("/productList")
 	void productListF( Model  model ){	
 		 model.addAttribute("li", service.list(null));
