@@ -1,0 +1,122 @@
+@charset "EUC-KR";
+
+table {
+	width: 90%;
+	border-collapse: collapse;
+}
+
+h1 {
+	font-size: 28px;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 20px;
+}
+
+td {
+	width: 45%;
+	vertical-align: top;
+	border: none;
+	/* 경계선 제거 */
+	padding-left: 1%;
+	padding-right: 1%;
+}
+
+/* 좌측 이미지 스타일 */
+.product-image img {
+	width: 400px;
+	height: 400px;
+	border-radius: 1%;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 상품 이름 */
+.product-name h2 {
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
+	margin: 0;
+}
+
+/* 상품 영어 이름 */
+.product-ename h3 {
+	font-size: 18px;
+	color: gray;
+	margin: 5px 0 10px;
+}
+
+/* 상품 설명 */
+.product-desc p {
+	font-size: 14px;
+	color: #555;
+	line-height: 1.6;
+	margin: 10px 0;
+}
+
+/* 제품 영양 정보 */
+.product-info h3 {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	color: #333;
+}
+
+.product-info p {
+	font-size: 14px;
+	color: #444;
+}
+
+/* 상품 가격 */
+.product-price {
+	font-size: 14px;
+}
+
+.product-price label {
+	margin-right: 10px;
+}
+
+.product-price select,
+.product-price input[type="number"] {
+	margin-left: 10px;
+	padding: 5px;
+	font-size: 14px;
+	width: 60px;
+}
+
+/* 알레르기 정보 */
+.product-allergy p {
+	font-size: 14px;
+	color: #444;
+	margin-top: 10px;
+}
+
+/* 버튼 스타일 */
+.product-actions input[type="submit"] {
+	padding: 10px 25px;
+	margin-right: 20px;
+	background-color: #252E40;;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.product-actions input[type="submit"]:hover {
+	background-color:#252E40;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+	table {
+		width: 90%;
+	}
+
+	td {
+		padding: 10px;
+	}
+
+	.product-image img {
+		width: 120px;
+		height: 120px;
+	}
+}

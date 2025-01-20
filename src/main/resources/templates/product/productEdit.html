@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="/css/style_producEdit.css" rel="stylesheet" type="text/css" />
 	<div th:replace="~{include/top}"></div>
 
 	<script>
@@ -17,47 +17,69 @@
 			<h1>상품주문하기</h1>
 			<form name="f1" action="/product/cartInsert" method="post">
 
-				<input type=hidden name=pimgStr size=30 th:value="${m.pimgStr}" />
-				<table border="1" width=600>
-					<tr align=>
-						<td class="td1" width=20% align="center">상품번호</td>
-						<td>&emsp;<input type=text name=pid th:value="${m.pid}" />
-						</td>
-
-						<td rowspan=3><img th:src="@{/product/files/}+${m.pimgStr}"
-							width=150 height=150 /></td>
-
-					</tr>
+				<table width="700">
 					<tr>
-						<td class="td1" align="center">상품이름</td>
-						<td>&emsp;<input type=text name=pname size=30
-							th:value="${m.pname}" />
+						<!-- 좌측 이미지 -->
+						<td rowspan="7" class="product-image">
+							<img th:if="${m.pimgStr != null and #strings.startsWith(m.pimgStr, 'http')}"
+								th:src="${m.pimgStr}" width=150 height=150 />
+							<img th:if="${m.pimgStr != null and !#strings.startsWith(m.pimgStr, 'http')}"
+								th:src="@{/product/files/}+${m.pimgStr}" width=150 height=150 />
+						</td>
+						<!-- 상품 이름 -->
+						<td class="product-name">
+							<h2 th:text="${m.pname}"></h2>
 						</td>
 					</tr>
 					<tr>
-						<td class="td1" align="center">상품가격</td>
-						<td>&emsp;<input type=text name=pprice
-							th:value="${m.pprice}" size=15 /> <select name=amount>
-								<option value=1>한잔(1)</option>
-								<option value=2>두잔(2)</option>
-								<option value=3>세잔(3)</option>
-						</select>
+						<!-- 상품 영어 이름 -->
+						<td class="product-ename">
+							<h3 th:text="${m.pename}"></h3>
 						</td>
 					</tr>
-
 					<tr>
-						<td class="td1" align="center">상품상세</td>
-						<td colspan=2>&emsp;<textarea cols=59 rows=4 name=pdesc>[[${m.pdesc}]]</textarea>
+						<!-- 상품 설명 -->
+						<td class="product-desc">
+							<p th:text="${m.pdesc}"></p>
 						</td>
 					</tr>
-
 					<tr>
-						<td colspan=3 align="center"><input type=submit
-							value="상품주문하기" /> &emsp; <input type=submit value="상품목록보기"
-							onClick="listK()" /> &emsp;</td>
+						<!-- 제품 영양 정보 -->
+						<td class="product-info">
+							<h3>제품 영양 정보</h3>
+							<p><span th:text="${m.psize}"></span></p>
+						</td>
 					</tr>
-
+					<tr>
+						<!-- 상품 가격과 개수 선택 -->
+						<td class="product-price">
+							<label>상품 가격: </label>
+							<span th:text="${m.pprice}">상품 가격</span> 원
+							<label>개수 선택:</label>
+							<select name="amount">
+								<option value="1">1개</option>
+								<option value="2">2개</option>
+								<option value="3">3개</option>
+							</select>
+							<input type="number" name="customAmount" placeholder="직접 입력" />
+						</td>
+					</tr>
+					<tr>
+						<!-- 알레르기 정보 -->
+						<td class="product-allergy">
+							<span th:text="${m.pinfo}"></span>
+						</td>
+					</tr>
+					<tr>
+						<!-- 버튼 -->
+						<td colspan="2" class="product-actions" align="center">
+							<br>
+							<input type="submit" value="상품주문하기" />
+							<input type="submit" value="상품목록보기" onClick="listK()" />
+						</td>
+					</tr>
 				</table>
+
 
 			</form>
 
@@ -67,4 +89,5 @@
 
 	<div th:replace="~{include/bottom::footer}"></div>
 </body>
+
 </html>
