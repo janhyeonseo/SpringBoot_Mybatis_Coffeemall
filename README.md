@@ -1,7 +1,7 @@
 # 결제&openAI API를 활용한 커피숍 관리 서비스
 
 ### 💡 서비스 개요
-- 커피숍의 제품 관리와 결제 처리, 고객 관리 기능을 제공하는 웹 서비스.
+- 커피숍 제품 관리와 결제 처리, 고객 관리 기능을 제공하는 웹 서비스.
 - 사용자 인증과 권한 관리, 상품 정보 관리, 결제 시스템 통합, 질의응답 등의 기능을 구현하여 보안성과 사용자 편의성을 향상.
 
 ### 🛠️ 기술 스택
@@ -12,6 +12,8 @@
           <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=flat-square&logo=Spring Security&logoColor=white">
           <img src="https://img.shields.io/badge/Mybatis-003496?style=flat-square&logo=Mybatis&logoColor=white">
           <img src="https://img.shields.io/badge/OpenAPI-004596?style=flat-square&logo=OpenAPI&logoColor=white">
+          <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=Python&logoColor=white">
+          <img src="https://img.shields.io/badge/Selenium-43B02A?style=flat&logo=Selenium&logoColor=white">
           <br>
           <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white">
           <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white">
@@ -48,3 +50,9 @@
 
 ### 📝 관리자 모드와 회원모드 분리
 - 관리자 모드와 회원모드를 분리하여 구매와 관리가 용이하게 구성.
+
+
+### 📝 Selenium과 bs4를 사용한 정보 크롤링
+- Selenium을 사용하여 원하는 정보 및 이미지를 xpath로 크롤링.
+- 상세한 정보 추출을 위해 Selenium으로 추출한 정보를 bs4를 사용해 상세 정보 추출.
+
