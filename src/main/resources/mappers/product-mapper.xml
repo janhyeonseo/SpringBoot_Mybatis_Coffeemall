@@ -34,8 +34,8 @@
 
 	<insert id="insert">
 	 <![CDATA[
-	    insert into product(pid,pname,pprice,pdesc,pimg) 
-	    values (#{pid},#{pname},#{pprice},#{pdesc},#{pimgStr})
+	    insert into product(pid, pname, pename, pprice, psize, pdesc, pinfo, pimg) 
+	    values (pid_idx.nextval, #{pname}, #{pename}, #{pprice}, #{psize}, #{pdesc}, #{pinfo}, #{pimgStr})
 	  ]]>
 	</insert>
 

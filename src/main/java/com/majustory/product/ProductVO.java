@@ -8,8 +8,11 @@ import lombok.Data;
 public class ProductVO {
 	private String pid;
 	private String pname;
+	private String pename;
 	private int pprice;
 	private String pdesc;
+	private String psize;
+	private String pinfo;
 	private String pimgStr;
 	private MultipartFile pimg;
 	private String today;
@@ -96,6 +99,30 @@ public class ProductVO {
 
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+
+	public String getPename() {
+		return pename;
+	}
+
+	public void setPename(String pename) {
+		this.pename = pename;
+	}
+
+	public String getPsize() {
+		return psize;
+	}
+
+	public void setPsize(String psize) {
+		this.psize = psize;
+	}
+
+	public String getPinfo() {
+		return pinfo;
+	}
+
+	public void setPinfo(String pinfo) {
+		this.pinfo = pinfo;
 	}
 
 	private int rownum;

@@ -52,7 +52,7 @@ public class ProductController {
 	
 	
 	@PostMapping("/productFormOK")
-	public String productFormOK(Model  model, ProductVO vo , HttpServletRequest  request) 
+	public String productFormOK( ProductVO vo , HttpServletRequest  request) 
 		     throws Exception, IOException {			
 
 		
