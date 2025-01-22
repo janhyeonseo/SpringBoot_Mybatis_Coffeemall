@@ -17,8 +17,14 @@
 
 			<h1>상품주문하기</h1>
 			<form name="f1" action="/product/cartInsert" method="post">
+			
 
 				<table>
+					<input type="hidden" name="pid" th:value="${m.pid}" />
+					<input type="hidden" name="pimgStr" th:value="${m.pimgStr}" />
+					<input type="hidden" name="pname" th:value="${m.pname}" />
+					<input type="hidden" name="pename" th:value="${m.pename}" />
+					<input type="hidden" name="pprice" th:value="${m.pprice}" />
 					<tr>
 						<!-- 좌측 이미지 -->
 						<td rowspan="7" class="product-image">

@@ -41,8 +41,8 @@
 
 	<insert id="cartInsert">
 	 <![CDATA[
-	    insert into cart(cid,pname,pprice,pimg, amount ) 
-	    values (idx.nextval,#{pname},#{pprice},#{pimgStr}, #{amount})
+	    insert into cart(cid, pid, pname, pename, pprice, pimg, amount ) 
+	    values (idx.nextval,#{pid}, #{pname}, #{pename}, #{pprice},#{pimgStr}, #{amount})
 	  ]]>
 	</insert>
 
