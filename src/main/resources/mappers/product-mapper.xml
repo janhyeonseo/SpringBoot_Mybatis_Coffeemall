@@ -41,8 +41,8 @@
 
 	<insert id="cartInsert">
 	 <![CDATA[
-	    insert into cart(cid, pid, pname, pename, pprice, pimg, amount ) 
-	    values (idx.nextval,#{pid}, #{pname}, #{pename}, #{pprice},#{pimgStr}, #{amount})
+	    insert into cart(cid, id, pid, pname, pename, pprice, pimg, amount ) 
+	    values (idx.nextval, #{id}, #{pid}, #{pname}, #{pename}, #{pprice},#{pimgStr}, #{amount})
 	  ]]>
 	</insert>
 
@@ -51,7 +51,7 @@
 	 <![CDATA[
 	     SELECT MIN(cid) AS cid, pname, sum(pprice) as pprice,
 		    MAX(pimg) AS pimgStr, SUM(amount) AS amount
-		FROM cart GROUP BY pname
+		FROM cart where id = #{id} GROUP BY pname
 		ORDER BY cid ASC	
 	  ]]>
 	</select>

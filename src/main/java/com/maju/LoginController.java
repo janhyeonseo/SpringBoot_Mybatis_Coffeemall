@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.majustory.login.LoginService;
 import com.majustory.login.LoginVO;
@@ -48,9 +49,9 @@ public class LoginController {
 	}
 	 
 	@GetMapping("/loginSuccess")
-	String success(Model  model, HttpSession  session){
+	String success(HttpSession  session ){
 		   System.out.println("==> success ");
-		   session.setAttribute("USERNAME", "session");
+		   session.setAttribute("USERNAME", "USERNAME");
 		return "/login/success.html";	
 
 	}

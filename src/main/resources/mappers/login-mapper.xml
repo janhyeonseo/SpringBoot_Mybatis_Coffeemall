@@ -3,7 +3,7 @@
 <mapper namespace="com.majustory.login.LoginDao">
 
 	<select id="getUser" resultType="com.majustory.login.LoginVO">
-		select pid, username, password, role, name, pimg, today
+		select id, username, password, role, name, pimg, today
 		from member where username = #{username}
 	</select>
 

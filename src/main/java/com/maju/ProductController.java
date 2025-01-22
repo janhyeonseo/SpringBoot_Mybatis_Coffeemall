@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +17,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.majustory.product.ProductService;
 import com.majustory.product.ProductVO;
+import com.majustory.security.SecurityUser;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @RequestMapping("/product")
 @Controller
@@ -143,14 +146,16 @@ public class ProductController {
 	}
 	
 	@GetMapping("/productEdit")
-	void productEdit( Model  model , ProductVO vo  ){
+	void productEdit( Model  model , ProductVO vo , @AuthenticationPrincipal SecurityUser user  ){
 		 System.out.println("==> productEdit ");
+		 System.out.println("Logged-in User ID: " + user.getId()); // 디버깅용 로그
+		 model.addAttribute("id", user.getId());
 		 model.addAttribute("m", service.edit(vo));
 		 
 	}
 	
 	@PostMapping("/cartInsert")
-	String cartInsert( ProductVO vo  ){
+	String cartInsert( ProductVO vo){
 		 System.out.println("==> cartInsert ");
 		 service.cartInsert(vo);
 		return "redirect:/product/productList";
@@ -158,7 +163,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/cartList")
-	void cartList( Model  model,  ProductVO vo){
+	void cartList( Model  model,  ProductVO vo, @AuthenticationPrincipal SecurityUser user){
 		 System.out.println("==> productList " );	
 		 List<ProductVO>  li = service.cartList(null);
 		 
@@ -170,7 +175,9 @@ public class ProductController {
 		 for(ProductVO m : li) {
 			 total = total + m.getPprice()*Integer.parseInt(m.getAmount());
 		 }
-		 model.addAttribute("li", service.cartList(null));
+		 String id = user.getId();
+		 vo.setId(id);
+		 model.addAttribute("li", service.cartList(vo));
 		 model.addAttribute("total", total);
 	    
 	}

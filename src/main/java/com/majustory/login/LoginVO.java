@@ -4,18 +4,18 @@ import lombok.Data;
 
 @Data
 public class LoginVO {
-	private String pid;
+	private String id;
 	private String username;
 	private String password;
 	private String role;
 	private String name;
 	private String pimg;
 	private String today;
-	public String getPid() {
-		return pid;
+	public String getid() {
+		return id;
 	}
-	public void setPid(String pid) {
-		this.pid = pid;
+	public void setid(String id) {
+		this.id = id;
 	}
 	public String getUsername() {
 		return username;

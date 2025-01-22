@@ -20,6 +20,16 @@ public class ProductVO {
 
 	private String cid;
 	private String amount;
+	
+	private String id;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getPid() {
 		return pid;
