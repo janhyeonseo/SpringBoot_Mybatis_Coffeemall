@@ -19,7 +19,7 @@ public class ProductVO {
 	private int cnt;
 
 	private String cid;
-	private int amount;
+	private String amount;
 
 	public String getPid() {
 		return pid;
@@ -93,11 +93,11 @@ public class ProductVO {
 		this.cid = cid;
 	}
 
-	public int getAmount() {
+	public String getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(String amount) {
 		this.amount = amount;
 	}
 

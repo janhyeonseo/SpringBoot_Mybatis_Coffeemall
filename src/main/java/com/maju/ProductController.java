@@ -81,9 +81,9 @@ public class ProductController {
 		}		
 	
 	
-	@GetMapping("/productList")
+	@RequestMapping("/productList")
 	void productListL( Model  model, ProductVO vo ){	
-		 System.out.println("==> productListL ");	
+		 System.out.println("==> productListG ");	
 		 
 		    int start = 0;
 			int pageSize = 12;
@@ -141,13 +141,6 @@ public class ProductController {
 		    model.addAttribute("ch2",vo.getCh2());
 		    model.addAttribute("li", service.list(vo));
 	}
-
-
-	@PostMapping("/productList")
-	void productListF( Model  model ){	
-		 model.addAttribute("li", service.list(null));
-		 System.out.println("==> productListF ");		 
-	}
 	
 	@GetMapping("/productEdit")
 	void productEdit( Model  model , ProductVO vo  ){
@@ -175,7 +168,7 @@ public class ProductController {
 		 }
 		 int total = 0;
 		 for(ProductVO m : li) {
-			 total = total + m.getPprice()*m.getAmount();
+			 total = total + m.getPprice()*Integer.parseInt(m.getAmount());
 		 }
 		 model.addAttribute("li", service.cartList(null));
 		 model.addAttribute("total", total);
