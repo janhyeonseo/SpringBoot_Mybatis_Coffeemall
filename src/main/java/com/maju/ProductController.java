@@ -27,183 +27,189 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/product")
 @Controller
 public class ProductController {
-	
+
 	@Autowired
-	private  ProductService  service; 
-	
+	private ProductService service;
+
 	@Autowired // 서블릿 주입하기
 	private ServletContext servletContext;
-	
-	String pathTest ="";
-		
-	ProductController(){
-	  System.out.println("==> ProductController ");	
+
+	String pathTest = "";
+
+	ProductController() {
+		System.out.println("==> ProductController ");
 	}
-	
-    @PostConstruct 
+
+	@PostConstruct
 	public void init() {
-		System.out.println("===> initialize() 메소드 실행 "); 
+		System.out.println("===> initialize() 메소드 실행 ");
 		pathTest = servletContext.getRealPath("/product/files/");
 	}
-    
-	
-	@GetMapping("/productForm")
-	void productForm(Model  model){
-		   System.out.println("==> productForm ");	
-	   model.addAttribute("pid", service.pid())	 ;
-	}
-	
-	
-	@PostMapping("/productFormOK")
-	public String productFormOK( ProductVO vo , HttpServletRequest  request) 
-		     throws Exception, IOException {			
 
-		
-			
-		  Random rnd = new Random();
-		  String RName = (rnd.nextInt(999999)+100001)+"";
-		  
-		    MultipartFile file = vo.getPimg();
-		    String fileName = file.getOriginalFilename();
-		    File F = new File(pathTest+fileName);
-		    if (!file.isEmpty()) {
-			    if (F.exists()) {
-			     String	Fname = fileName.substring(0, fileName.lastIndexOf("."));
-			     String Lname = fileName.substring(fileName.lastIndexOf("."));
-			     fileName = Fname + "_" + RName + Lname;
-			    }
-		    } else {
-		    	fileName ="space.png";
-		    }
-		    vo.setPimgStr(fileName);	    
-		    file.transferTo(new File(pathTest+fileName));
-		    		  
-			service.insert(vo);			
-			
-		   return "redirect:/product/productList";		
-		}		
-	
-	
-	@RequestMapping("/productList")
-	void productListL( Model  model, ProductVO vo ){	
-		 System.out.println("==> productListG ");	
-		 
-		    int start = 0;
-			int pageSize = 12;
-			int pageListSize = 5;
-			
-			int totalCount = service.totalcount(vo);
-			
-			if (vo.getStart() ==0) {
-				start = 1 ;
-			}else {
-				start = vo.getStart();
+	@GetMapping("/productForm")
+	void productForm(Model model) {
+		System.out.println("==> productForm ");
+		model.addAttribute("pid", service.pid());
+	}
+
+	@PostMapping("/productFormOK")
+	public String productFormOK(ProductVO vo, HttpServletRequest request) throws Exception, IOException {
+
+		Random rnd = new Random();
+		String RName = (rnd.nextInt(999999) + 100001) + "";
+
+		MultipartFile file = vo.getPimg();
+		String fileName = file.getOriginalFilename();
+		File F = new File(pathTest + fileName);
+		if (!file.isEmpty()) {
+			if (F.exists()) {
+				String Fname = fileName.substring(0, fileName.lastIndexOf("."));
+				String Lname = fileName.substring(fileName.lastIndexOf("."));
+				fileName = Fname + "_" + RName + Lname;
 			}
-			
-			int  end = start + pageSize - 1 ;
-			int  totalPage =(int) (Math.ceil((double) totalCount / pageSize));  // 전체페이지 수 
-			int  currentPage = (start / pageSize) + 1;  // 현재페이지 
-			
-			int  lastPage = (totalPage - 1) * pageSize + 1;  // 마지막 페이지
-			
-		    int  listStartPage = (currentPage - 1) / pageListSize * pageListSize + 1;   // 하단 번호 시작
-		    int  listEndPage = listStartPage + pageListSize - 1;   // 하단 번호 끝
-			
-		    // 1. 페이지 사이즈
-		    model.addAttribute("pageSize", pageSize);
-		    
-		    // 2. 페이지 list 사이즈
-		    model.addAttribute("pageListSize", pageListSize);
-		    
-		    // 3. 전체레코드 수
-		    model.addAttribute("totalCount", totalCount);
-		    
-		    // 4. 총페이지 수
-		    model.addAttribute("totalPage", totalPage);
-		    
-		    // 5. 현재레코드 
-		    model.addAttribute("start", start);
-		    
-		    // 6. 현재 페이지:
-		    model.addAttribute("currentPage", currentPage);
-		    
-		    // 7. 하단 가로 시작:
-		    model.addAttribute("listStartPage", listStartPage);
-		    
-		    // 8. 하단 가로 끝 :
-		    model.addAttribute("listEndPage", listEndPage);
-		    
-		    // 9. 마지막페이지 :
-		    model.addAttribute("lastPage", lastPage);
-		    
-		    vo.setStart(start);
-		    vo.setEnd(end);
-		    vo.setPageSize(pageSize);
-		    
-		    model.addAttribute("ch1",vo.getCh1());
-		    model.addAttribute("ch2",vo.getCh2());
-		    model.addAttribute("li", service.list(vo));
-	}
-	
-	@GetMapping("/productEdit")
-	void productEdit( Model  model , ProductVO vo , @AuthenticationPrincipal SecurityUser user  ){
-		 System.out.println("==> productEdit ");
-		 System.out.println("Logged-in User ID: " + user.getId()); // 디버깅용 로그
-		 model.addAttribute("id", user.getId());
-		 model.addAttribute("m", service.edit(vo));
-		 
-	}
-	
-	@PostMapping("/cartInsert")
-	String cartInsert( ProductVO vo){
-		 System.out.println("==> cartInsert ");
-		 service.cartInsert(vo);
+		} else {
+			fileName = "space.png";
+		}
+		vo.setPimgStr(fileName);
+		file.transferTo(new File(pathTest + fileName));
+
+		service.insert(vo);
+
 		return "redirect:/product/productList";
-		 
 	}
-	
+
+	@RequestMapping("/productList")
+	void productListL(Model model, ProductVO vo) {
+		System.out.println("==> productListG ");
+
+		int start = 0;
+		int pageSize = 12;
+		int pageListSize = 5;
+
+		int totalCount = service.totalcount(vo);
+
+		if (vo.getStart() == 0) {
+			start = 1;
+		} else {
+			start = vo.getStart();
+		}
+
+		int end = start + pageSize - 1;
+		int totalPage = (int) (Math.ceil((double) totalCount / pageSize)); // 전체페이지 수
+		int currentPage = (start / pageSize) + 1; // 현재페이지
+
+		int lastPage = (totalPage - 1) * pageSize + 1; // 마지막 페이지
+
+		int listStartPage = (currentPage - 1) / pageListSize * pageListSize + 1; // 하단 번호 시작
+		int listEndPage = listStartPage + pageListSize - 1; // 하단 번호 끝
+
+		// 1. 페이지 사이즈
+		model.addAttribute("pageSize", pageSize);
+
+		// 2. 페이지 list 사이즈
+		model.addAttribute("pageListSize", pageListSize);
+
+		// 3. 전체레코드 수
+		model.addAttribute("totalCount", totalCount);
+
+		// 4. 총페이지 수
+		model.addAttribute("totalPage", totalPage);
+
+		// 5. 현재레코드
+		model.addAttribute("start", start);
+
+		// 6. 현재 페이지:
+		model.addAttribute("currentPage", currentPage);
+
+		// 7. 하단 가로 시작:
+		model.addAttribute("listStartPage", listStartPage);
+
+		// 8. 하단 가로 끝 :
+		model.addAttribute("listEndPage", listEndPage);
+
+		// 9. 마지막페이지 :
+		model.addAttribute("lastPage", lastPage);
+
+		vo.setStart(start);
+		vo.setEnd(end);
+		vo.setPageSize(pageSize);
+
+		model.addAttribute("ch1", vo.getCh1());
+		model.addAttribute("ch2", vo.getCh2());
+		model.addAttribute("li", service.list(vo));
+	}
+
+	@GetMapping("/productEdit")
+	void productEdit(Model model, ProductVO vo, @AuthenticationPrincipal SecurityUser user) {
+		System.out.println("==> productEdit ");
+		System.out.println("Logged-in User ID: " + user.getId()); // 디버깅용 로그
+		model.addAttribute("id", user.getId());
+		model.addAttribute("m", service.edit(vo));
+
+	}
+
+	@PostMapping("/cartInsert")
+	String cartInsert(ProductVO vo) {
+		System.out.println("==> cartInsert ");
+		service.cartInsert(vo);
+		return "redirect:/product/productList";
+
+	}
+
 	@GetMapping("/cartList")
-	void cartList( Model  model,  ProductVO vo, @AuthenticationPrincipal SecurityUser user){
-		 System.out.println("==> productList " );	
-		 List<ProductVO>  li = service.cartList(null);
-		 
-		 if(li.size() >0) {
-			 ProductVO  mm = li.get(0);		
-			 model.addAttribute("mm", mm.getCid());
-		 }
-		 int total = 0;
-		 for(ProductVO m : li) {
-			 total = total + m.getPprice()*Integer.parseInt(m.getAmount());
-		 }
-		 String id = user.getId();
-		 vo.setId(id);
-		 model.addAttribute("li", service.cartList(vo));
-		 model.addAttribute("total", total);
+	void cartList(Model model, ProductVO vo, @AuthenticationPrincipal SecurityUser user) {
+		System.out.println("==> productList ");
+
+		// 사용자 ID 설정
+		String id = user.getId();
+		vo.setId(id);
+
+		List<ProductVO> li = service.cartList(vo);
+
+		// 첫 번째 항목 처리
+	    if (!li.isEmpty()) {
+	        ProductVO mm = li.get(0);
+	        model.addAttribute("mm", mm.getCid());
+	    } else {
+	        model.addAttribute("mm", null);
+	    }
+
+	    // 총합 계산
+	    int total = 0;
+	    for (ProductVO m : li) {
+	        String amount = m.getAmount();
+	        if (amount != null && !amount.isEmpty() && amount.matches("\\d+")) {
+	            total += m.getPprice() * Integer.parseInt(amount);
+	        }
+	    }
 	    
+		model.addAttribute("li", li);
+		model.addAttribute("total", total);
+
 	}
-	
+
 	@GetMapping("/cartDel")
-	String cartDel( ProductVO vo , Model  model ){
-		 System.out.println("==> cartDel ");
-		 service.cartDel(vo);
-		 model.addAttribute("li", service.cartList(null));
+	String cartDel(ProductVO vo, Model model) {
+		System.out.println("==> cartDel ");
+		service.cartDel(vo);
+		model.addAttribute("li", service.cartList(null));
 		return "/product/cartList";
-		 
+
 	}
-	
+
 	@GetMapping("/cartDel2")
-	String cartDel2( String [] cid , Model  model , ProductVO vo ){
-		 System.out.println("==> cartDel " + cid.length);
-		 for (int i=0 ; i < cid.length ; i++) {
-			 vo.setCid(cid[i]);
-			 System.out.println("==> cartDel(삭제) : " + cid[i]);
-			 service.cartDel(vo);
-			 
-		 }
+	String cartDel2(String[] cid, Model model, ProductVO vo) {
+		System.out.println("==> cartDel " + cid.length);
+		for (int i = 0; i < cid.length; i++) {
+			vo.setCid(cid[i]);
+			System.out.println("==> cartDel(삭제) : " + cid[i]);
+			service.cartDel(vo);
+
+		}
 
 		model.addAttribute("li", service.cartList(null));
 		return "/product/cartList";
-		 
+
 	}
-	
+
 }

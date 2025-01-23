@@ -6,15 +6,10 @@
 		select idx.nextval from dual
 	</select>
 
-	<select id="list" resultType="com.majustory.product.ProductVO">	  
-	    select rownum , K.*
-		from
-		( select rownum as rnum , P.*
-		  from
-		  (select pid, pname, pename, pprice, pdesc, pinfo, pimg as pimgStr , psize, cnt 
-	       from  product ) P
-		  where 1=1
-		<if test="ch1 == 'pname'">
+	<select id="list" resultType="com.majustory.product.ProductVO"> select
+		rownum , K.* from ( select rownum as rnum , P.* from (select pid, pname,
+		pename, pprice, pdesc, pinfo, pimg as pimgStr , psize, cnt from product
+		) P where 1=1 <if test="ch1 == 'pname'">
 			and pname like '%'||#{ch2}||'%'
 		</if>
 		<![CDATA[
@@ -49,10 +44,17 @@
 	<select id="cartList"
 		resultType="com.majustory.product.ProductVO">
 	 <![CDATA[
-	     SELECT MIN(cid) AS cid, pname, sum(pprice) as pprice,
-		    MAX(pimg) AS pimgStr, SUM(amount) AS amount
-		FROM cart where id = #{id} GROUP BY pname
-		ORDER BY cid ASC	
+	    SELECT MIN(cid) AS cid, 
+               id, 
+               pname, 
+               SUM(COALESCE(pprice, 0)) AS pprice, 
+               MAX(pimg) AS pimgStr, 
+               SUM(amount) AS amount
+        FROM cart 
+        WHERE id = #{id} 
+        GROUP BY id, pname
+        ORDER BY cid ASC
+
 	  ]]>
 	</select>
 
@@ -62,7 +64,7 @@
 	    delete  from cart where cid = #{cid} 
 	  ]]>
 	</delete>
-	
+
 	<select id="totalcount"
 		parameterType="com.majustory.product.ProductVO" resultType="int">
 		SELECT count(
