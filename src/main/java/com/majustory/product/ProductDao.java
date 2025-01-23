@@ -14,6 +14,7 @@ public interface ProductDao {
 	public  void  cartInsert(ProductVO vo);
 	
 	public  void cartDel (ProductVO vo);
+	public  void cartDel2 (ProductVO vo);
 	
 	public  List<ProductVO>  cartList(ProductVO vo);
 	

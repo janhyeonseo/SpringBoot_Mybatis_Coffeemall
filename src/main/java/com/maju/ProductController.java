@@ -167,47 +167,57 @@ public class ProductController {
 		List<ProductVO> li = service.cartList(vo);
 
 		// 첫 번째 항목 처리
-	    if (!li.isEmpty()) {
-	        ProductVO mm = li.get(0);
-	        model.addAttribute("mm", mm.getCid());
-	    } else {
-	        model.addAttribute("mm", null);
-	    }
+		if (!li.isEmpty()) {
+			ProductVO mm = li.get(0);
+			model.addAttribute("mm", mm.getCid());
+		} else {
+			model.addAttribute("mm", null);
+		}
 
-	    // 총합 계산
-	    int total = 0;
-	    for (ProductVO m : li) {
-	        String amount = m.getAmount();
-	        if (amount != null && !amount.isEmpty() && amount.matches("\\d+")) {
-	            total += m.getPprice() * Integer.parseInt(amount);
-	        }
-	    }
-	    
+		// 총합 계산
+		int total = 0;
+		for (ProductVO m : li) {
+			String amount = m.getAmount();
+			if (amount != null && !amount.isEmpty() && amount.matches("\\d+")) {
+				total += m.getPprice() * Integer.parseInt(amount);
+			}
+		}
+
 		model.addAttribute("li", li);
 		model.addAttribute("total", total);
 
 	}
 
 	@GetMapping("/cartDel")
-	String cartDel(ProductVO vo, Model model) {
+	String cartDel(ProductVO vo, Model model, @AuthenticationPrincipal SecurityUser user) {
 		System.out.println("==> cartDel ");
 		service.cartDel(vo);
-		model.addAttribute("li", service.cartList(null));
+
+		// 사용자 ID 설정
+		String id = user.getId();
+		vo.setId(id);
+
+		model.addAttribute("li", service.cartList(vo));
 		return "/product/cartList";
 
 	}
 
 	@GetMapping("/cartDel2")
-	String cartDel2(String[] cid, Model model, ProductVO vo) {
+	String cartDel2(String[] cid, Model model, ProductVO vo, @AuthenticationPrincipal SecurityUser user) {
 		System.out.println("==> cartDel " + cid.length);
+		/*
 		for (int i = 0; i < cid.length; i++) {
 			vo.setCid(cid[i]);
 			System.out.println("==> cartDel(삭제) : " + cid[i]);
 			service.cartDel(vo);
 
 		}
-
-		model.addAttribute("li", service.cartList(null));
+		*/
+		// 사용자 ID 설정
+		String id = user.getId();
+		vo.setId(id);
+		service.cartDel2(vo);
+		model.addAttribute("li", service.cartList(vo));
 		return "/product/cartList";
 
 	}

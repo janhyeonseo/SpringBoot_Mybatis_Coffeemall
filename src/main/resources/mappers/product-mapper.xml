@@ -64,6 +64,12 @@
 	    delete  from cart where cid = #{cid} 
 	  ]]>
 	</delete>
+	
+	<delete id="cartDel2">
+	 <![CDATA[
+	    delete  from cart where id = #{id} 
+	  ]]>
+	</delete>
 
 	<select id="totalcount"
 		parameterType="com.majustory.product.ProductVO" resultType="int">

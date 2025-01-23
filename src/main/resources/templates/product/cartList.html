@@ -35,33 +35,38 @@
 						<td>취소</td>
 					</tr>
 					<th:block th:if="${li.size() < 1}">
-					<tr align="center">
-						<td colspan="6" >구매한 물건이 없습니다!</td>
-					</tr>
+						<tr align="center">
+							<td colspan="6">구매한 물건이 없습니다!</td>
+						</tr>
 					</th:block>
 					<th:block th:if="${li.size() >= 1}">
-					<tr th:each="m, mStat: ${li} " align="center">
+						<tr th:each="m, mStat: ${li} " align="center">
 
-						<td th:text="${mStat.index}" />
-						<td><input type=hidden name=cid th:value=${m.cid} /> <img
-							th:src="@{/product/files/}+${m.pimgStr}" width=50 height=50 /></td>
-						<td th:text="${m.pname}" />
-						<td th:text="${m.pprice}" />
-						<td th:text="${m.amount}" />
-						<td><input type="button" value="취소"
-							th:onClick="delOne([[${m.cid}]])"></td>
-					</tr>
+							<td th:text="${mStat.index}+1"></td>
+							<td><input type=hidden name=cid th:value=${m.cid} />
+								<a th:href="@{/product/productEdit(pid=${m.pid})}">
+									<!-- 이미지 출력 조건문 -->
+									<img th:if="${m.pimgStr != null and #strings.startsWith(m.pimgStr, 'http')}"
+										th:src="${m.pimgStr}" width=50 height=50 />
+									<img th:if="${m.pimgStr != null and !#strings.startsWith(m.pimgStr, 'http')}"
+										th:src="@{/product/files/}+${m.pimgStr}" width=50 height=50 />
+								</a>
+							</td>
+							<td th:text="${m.pname}" ></td>
+							<td th:text="${m.pprice}"></td> 
+							<td th:text="${m.amount}"></td>
+							<td><input type="button" value="취소" th:onClick="delOne([[${m.cid}]])"></td>
+						</tr>
 					</th:block>
 				</table>
-				
+
 				<th:block th:if="${li.size() >= 1}">
-				<div class="kg_pay_btn" th:data-name="마주스토리" th:data-price="${total}"
-					 th:data-goodsnum="${mm}">
+					<div class="kg_pay_btn" th:data-name="마주스토리" th:data-price="${total}" th:data-goodsnum="${mm}">
 						<input type=hidden id=datepicker value="2024-08-02">
-						<button type="button" th:onclick="kg_request_pay()">결제하기</button>&emsp; 
-						<input type=submit value="전체삭제" onClick="delK()" /> &emsp; 
+						<button type="button" th:onclick="kg_request_pay()">결제하기</button>&emsp;
+						<input type=submit value="전체삭제" onClick="delK()" /> &emsp;
 						결제금액 : <input type=text th:value=" ${total}" />
-				</div>		
+					</div>
 				</th:block>
 			</form>
 		</div>
@@ -69,7 +74,7 @@
 
 	<script th:inline="javascript">
 		jQuery.ajaxSetup({
-			cache : false
+			cache: false
 		});
 
 		function kg_request_pay() {
@@ -77,11 +82,11 @@
 			// data-name(상품이름): 3개월무료사용 , data-price(가격): 100  , data-goodsnum(주문번호) : "70001" 
 			var selectedDate = document.getElementById("datepicker").value;
 			var selectedGoodsName = document.querySelector(".kg_pay_btn")
-					.getAttribute("data-name");
+				.getAttribute("data-name");
 			var selectedGoodsPrice = document.querySelector(".kg_pay_btn")
-					.getAttribute("data-price");
+				.getAttribute("data-price");
 			var selectedGoodsNum = document.querySelector(".kg_pay_btn")
-					.getAttribute("data-goodsnum");
+				.getAttribute("data-goodsnum");
 
 			//kg이니시스 결제 API
 			var IMP = window.IMP; // 생략가능
@@ -89,45 +94,45 @@
 
 			// IMP.request_pay(param, callback) 결제창 호출
 			IMP.request_pay({
-				pg : "html5_inicis",
-				pay_method : "card",
-				merchant_uid : "gpay_" + new Date().getTime(), // 주문번호
-				name : "마주스토리" + " " + selectedGoodsName, // 상품이름
-				amount : selectedGoodsPrice, // 상품가격 (숫자 타입)
-				buyer_email : "kk0063@naver.com",
-				buyer_name : "choi young won",
-				buyer_tel : "01050376133"
-			}, function(rsp) { // callback
+				pg: "html5_inicis",
+				pay_method: "card",
+				merchant_uid: "gpay_" + new Date().getTime(), // 주문번호
+				name: "마주스토리" + " " + selectedGoodsName, // 상품이름
+				amount: selectedGoodsPrice, // 상품가격 (숫자 타입)
+				buyer_email: "kk0063@naver.com",
+				buyer_name: "choi young won",
+				buyer_tel: "01050376133"
+			}, function (rsp) { // callback
 				console.log(rsp);
 				if (rsp.success) { //결제 성공시
 					var msg = '결제가 완료되었습니다.';
 					var result = {
-						"mpaynum" : rsp.merchant_uid, //결제번호
-						"membernum" : "AA00001", //회원번호
-						"mpaymethod" : rsp.pay_method, //결제수단
-						"mpayproduct" : rsp.name, //헬스장 이름 + 상품이름
-						"mpayprice" : rsp.paid_amount, // 결제금액
-						"mpaydate" : new Date().toISOString().slice(0, 10), //결제일
-						"mpaygym" : "마주스토리", //헬스장 이름
-						"mpayperiod" : selectedDate, //상품이용기간
-						"mpaytime" : "",
-						"trainername" : "",
-						"ggoodsnum" : selectedGoodsNum, //상품번호
-						"tgoodsint" : null,
-						"gymnum" : "B0001" //헬스장 고유번호
+						"mpaynum": rsp.merchant_uid, //결제번호
+						"membernum": "AA00001", //회원번호
+						"mpaymethod": rsp.pay_method, //결제수단
+						"mpayproduct": rsp.name, //헬스장 이름 + 상품이름
+						"mpayprice": rsp.paid_amount, // 결제금액
+						"mpaydate": new Date().toISOString().slice(0, 10), //결제일
+						"mpaygym": "마주스토리", //헬스장 이름
+						"mpayperiod": selectedDate, //상품이용기간
+						"mpaytime": "",
+						"trainername": "",
+						"ggoodsnum": selectedGoodsNum, //상품번호
+						"tgoodsint": null,
+						"gymnum": "B0001" //헬스장 고유번호
 					}
 					console.log(result);
 
 					$.ajax({
-						url : '/PortOneT/insertMPay',
-						type : 'POST',
-						contentType : 'application/json',
-						data : JSON.stringify(result),
-						success : function(res) {
+						url: '/PortOneT/insertMPay',
+						type: 'POST',
+						contentType: 'application/json',
+						data: JSON.stringify(result),
+						success: function (res) {
 							console.log(res);
 							location.href = res;
 						},
-						error : function(err) {
+						error: function (err) {
 							console.log(err);
 						}
 					}); //ajax
@@ -143,4 +148,5 @@
 
 	<div th:replace="~{include/bottom::footer}"></div>
 </body>
+
 </html>

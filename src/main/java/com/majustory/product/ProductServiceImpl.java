@@ -58,4 +58,10 @@ public class ProductServiceImpl implements ProductService {
 		return dao.totalcount(vo);
 	}
 
+	@Override
+	public void cartDel2(ProductVO vo) {
+		dao.cartDel2(vo);
+		
+	}
+
 }
