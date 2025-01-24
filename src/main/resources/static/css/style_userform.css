@@ -55,9 +55,11 @@ input[type="text"],
 input[type="password"],
 input[type="email"] {
     flex: 1;
+	width: 90%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: none;
+	border-bottom: 1px solid #ccc;
+    outline: none;
     font-size: 14px;
 }
 
@@ -67,25 +69,51 @@ input[type="email"] {
     gap: 10px;
 }
 
-.btn-small {
-    padding: 5px 10px;
-    font-size: 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+/* 회원 유형 선택 버튼 */
+.role-container {
+    display: flex;
+    gap: 10px; 
+    align-items: center;
+    justify-content: space-between;
+    width: 70%; 
 }
 
-.btn-small:hover {
-    background-color: #0056b3;
+input[type="radio"] {
+    display: none; /* 기본 라디오 버튼 숨기기 */
 }
+
+.role-option {
+    flex: 1; 
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    background-color: #fff; 
+    color: #252E40; 
+    border: 1px solid #252E40; 
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: all 0.3s ease; /* 클릭 및 호버 전환 효과 */
+}
+
+/* 버튼 클릭 시 효과 */
+input[type="radio"]:checked + .role-option {
+    background-color: #252E40; 
+    color: #fff; 
+    border-color: #252E40; 
+}
+
+/* 호버 효과 */
+.role-option:hover {
+    background-color: #f0f0f0; /* 마우스 오버 시 연한 회색 */
+}
+
+
 
 .btn-large {
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    background-color: #007bff;
+    background-color: #252E40;
     color: white;
     border: none;
     border-radius: 5px;
@@ -93,7 +121,7 @@ input[type="email"] {
 }
 
 .btn-large:hover {
-    background-color: #0056b3;
+    background-color: #1e2533;;
 }
 
 .role-select {

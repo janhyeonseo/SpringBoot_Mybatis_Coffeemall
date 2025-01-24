@@ -1,23 +1,52 @@
 <html xmlns:th="http://www.thymeleaf.org">
+
 <body>
 	<link href="/css/style_userform.css" rel="stylesheet" type="text/css" />
 	<div th:replace="~{include/top}"></div>
 
 	<script>
-		function validatePassword() {
+		function validateForm() {
+			const username = document.getElementById('username').value;
+			const usernameError = document.getElementById('usernameError');
+
 			const password = document.getElementById('password').value;
 			const confirmPassword = document.getElementById('confirmPassword').value;
-			const errorElement = document.getElementById('passwordError');
 
-			// 비밀번호 일치 여부 확인
-			if (password !== confirmPassword) {
-				errorElement.textContent = "비밀번호가 일치하지 않습니다.";
-				errorElement.style.color = "red";
-				return false; // 폼 제출 방지
+			const passwordError = document.getElementById('passwordError');
+			const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+			// 아이디 조건 확인 
+			const usernameRegex = /^[a-zA-Z0-9]{6,16}$/;
+			let isValid = true;
+			if (!usernameRegex.test(username)) {
+				usernameError.textContent = "아이디는 6~16자, 영문과 숫자만 가능합니다.";
+				usernameError.style.color = "red";
+				isValid = false;
 			} else {
-				errorElement.textContent = ""; // 에러 메시지 제거
-				return true; // 폼 제출 허용
+				usernameError.textContent = "";
 			}
+
+			// 비밀번호 조건 확인 
+			const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
+
+			if (!passwordRegex.test(password)) {
+				passwordError.textContent = "비밀번호는 8~16자, 문자, 숫자, 특수문자를 포함해야 합니다.";
+				passwordError.style.color = "red";
+				isValid = false;
+			} else {
+				passwordError.textContent = "";
+			}
+
+			// 비밀번호 확인
+			if (password !== confirmPassword) {
+				confirmPasswordError.textContent = "비밀번호가 일치하지 않습니다.";
+				confirmPasswordError.style.color = "red";
+				isValid = false;
+			} else {
+				confirmPasswordError.textContent = "";
+			}
+
+			return isValid;
 		}
 	</script>
 
@@ -25,7 +54,7 @@
 		<br>
 		<div class="form-container">
 			<h1>회원가입</h1>
-			<form name="signupForm" action="/login/userformOK" method="post" onsubmit="return validatePassword()">
+			<form name="signupForm" action="/login/userformOK" method="post" onsubmit="return validateForm()">
 				<!-- 로그인 정보 -->
 				<fieldset>
 					<legend>로그인 정보</legend>
@@ -33,10 +62,16 @@
 						<label for="username">아이디</label>
 						<input type="text" id="username" name="username" placeholder="6~16자 / 영문, 숫자 사용 가능" required />
 					</div>
+					<div class="form-row-error">
+						<span id="usernameError" class="error-message"></span>
+					</div>
 					<div class="form-row">
 						<label for="password">비밀번호</label>
 						<input type="password" id="password" name="password" placeholder="8~16자 / 문자, 숫자, 특수 문자 포함"
 							required />
+					</div>
+					<div class="form-row-error">
+						<span id="passwordError" class="error-message"></span>
 					</div>
 					<div class="form-row">
 						<label for="confirmPassword">비밀번호 확인</label>
@@ -44,7 +79,7 @@
 							required />
 					</div>
 					<div class="form-row-error">
-						<span id="passwordError" class="error-message"></span>
+						<span id="confirmPasswordError" class="error-message"></span>
 					</div>
 				</fieldset>
 
@@ -53,30 +88,25 @@
 					<legend>회원 정보</legend>
 					<div class="form-row">
 						<label>회원 유형</label>
-						<div class="role-select">
-							<label>
-								<input type="radio" name="role" value="ROLE_MEMBER" checked /> 회원
-							</label>
-							<label>
-								<input type="radio" name="role" value="ROLE_ADMIN" /> 관리자
-							</label>
+						<div class="role-container">
+							<input type="radio" id="member" name="role" value="ROLE_MEMBER" checked/>
+							<label for="member" class="role-option">회원</label>
+							<!-- 라디오 버튼과 라벨을 연결하려면, input의 id 속성과 label의 for 속성을 매칭해야 함 -->
+							<input type="radio" id="admin" name="role" value="ROLE_ADMIN" />
+							<label for="admin" class="role-option">관리자</label>
 						</div>
 					</div>
 					<div class="form-row">
 						<label for="name">이름</label>
-						<input type="text" id="name" name="name" placeholder="성함을 입력해주세요" required />
+						<input type="text" id="name" name="name" placeholder="실명을 입력해주세요" required />
 					</div>
 					<div class="form-row">
 						<label for="phone">휴대전화</label>
-						<div class="phone-row">
-							<input type="text" id="phone" name="phone" placeholder="010-xxxx-xxxx" required />
-						</div>
+						<input type="text" id="phone" name="phone" placeholder="010-xxxx-xxxx" required />
 					</div>
 					<div class="form-row">
 						<label for="email">이메일</label>
-						<div class="email-row">
-							<input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required />
-						</div>
+						<input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required />
 					</div>
 				</fieldset>
 
@@ -91,4 +121,5 @@
 
 	<div th:replace="~{include/bottom::footer}"></div>
 </body>
+
 </html>
