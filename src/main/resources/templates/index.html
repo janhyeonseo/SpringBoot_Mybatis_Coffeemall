@@ -1,13 +1,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-	<link href="/css/style_productList.css" rel="stylesheet" type="text/css" />
+	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 	<div th:replace="~{include/top}"></div>
 	<section>
 		<br>
 
-		<h1 th:text="${Hello}"></h1>
+		<div>
+			<div>
+				<h5>리뷰</h5>
+				<table>
+					<tr th:each="m, mStat: ${li} " align="center">
+						<td th:text="${m.pid}"></td>
 
+					</tr>
+
+				</table>
+			</div>
+		</div>
 		<br>
 	</section>
 

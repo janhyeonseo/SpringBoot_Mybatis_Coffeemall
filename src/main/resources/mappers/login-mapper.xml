@@ -3,8 +3,15 @@
 <mapper namespace="com.majustory.login.LoginDao">
 
 	<select id="getUser" resultType="com.majustory.login.LoginVO">
-		select id, username, password, role, name, pimg, today
+		select id, username, password, role, name, phone,email, today
 		from member where username = #{username}
 	</select>
+	
+	<insert id="userInsert">
+	 <![CDATA[
+	    insert into member(id, username, password, role, name, phone, email) 
+	    values (idx.nextval, #{username}, #{password}, #{role}, #{name}, #{phone}, #{email})
+	  ]]>
+	</insert>
 
 </mapper>

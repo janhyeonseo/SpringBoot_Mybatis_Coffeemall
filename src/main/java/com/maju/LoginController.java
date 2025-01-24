@@ -74,4 +74,17 @@ public class LoginController {
 		   session.invalidate() ;
 		return "redirect:/login/loginForm";
 	}
+	
+	@GetMapping("/userform")
+    public String MemberForm() {
+		System.out.println("==> userform ");
+        return "login/userform"; 
+    }
+	
+	@PostMapping("/userformOK")
+    public String memberformOK(LoginVO vo) {
+		System.out.println("==> userform ");
+		service.userInsert(vo);
+        return "/login/loginform"; 
+    }
 }

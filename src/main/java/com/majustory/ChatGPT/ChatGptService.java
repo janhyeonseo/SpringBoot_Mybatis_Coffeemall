@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 @Service
 public class ChatGptService {
       
-	private String apiKey ="API_KEY";
+	private String apiKey ="API-KEY";
 
     private final RestTemplate restTemplate = new RestTemplate();
     private final String apiUrl = "https://api.openai.com/v1/chat/completions";

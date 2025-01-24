@@ -16,8 +16,8 @@
 		<a sec:authorize="hasRole('ROLE_ADMIN')">관리자 관리 영역</a>
 	</span>
 	<header>
-		<div class="header-text"> makeCoffee 쇼핑몰 </div>
-		<nav><a th:text="${session.USERNAME}"></a>
+		<a href="/index" class="header-text"> makeCoffee 쇼핑몰 </a>
+		<nav>
 				<a href="/product/productForm"> 상품등록 </a>
 				<a href="/product/productList"> 상품목록보기 </a>
 

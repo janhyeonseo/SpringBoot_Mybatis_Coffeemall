@@ -15,4 +15,10 @@ public class LoginServiceImpl implements LoginService{
 		return dao.getUser(vo);
 	}
 
+	@Override
+	public void userInsert(LoginVO vo) {
+		dao.userInsert(vo);
+		
+	}
+
 }

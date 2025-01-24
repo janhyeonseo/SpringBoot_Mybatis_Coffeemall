@@ -31,15 +31,25 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(authorize -> authorize	              
 	              .requestMatchers("/chatGPT/**","/product/productForm").hasRole("ADMIN")
 	              .requestMatchers("/product/cartList").hasAnyRole("ADMIN", "MEMBER")	 
-	              .requestMatchers("/product/**","login/loginform").authenticated()
+	              .requestMatchers("/product/**").authenticated()
+	              .requestMatchers("/login/loginform","/login/userform").permitAll() // 회원가입 페이지는 인증 없이 접근 가능
 	              .anyRequest().permitAll())
 				
-		.csrf(csrf ->csrf.disable())	
+		.csrf(csrf -> csrf.disable())
 	    
-		.formLogin(login ->login.loginPage("/login/loginForm").defaultSuccessUrl("/login/loginSuccess", true))
-		.exceptionHandling(handling ->handling.accessDeniedPage("/login/accessDenied"))
-		.logout(logout ->logout.invalidateHttpSession(true).logoutSuccessUrl("/"))
-		.userDetailsService(securityUserDetail);
+		// 로그인 설정
+        .formLogin(login -> login
+            .loginPage("/login/loginForm")
+            .defaultSuccessUrl("/login/loginSuccess", false)) // 이전 요청 URL로 리다이렉트
+        // 예외 처리
+        .exceptionHandling(handling -> handling
+            .accessDeniedPage("/login/accessDenied"))
+        // 로그아웃 설정
+        .logout(logout -> logout
+            .invalidateHttpSession(true)
+            .logoutSuccessUrl("/"))
+        // 사용자 정보 서비스
+        .userDetailsService(securityUserDetail);
 		return http.build(); 
 	}
 	

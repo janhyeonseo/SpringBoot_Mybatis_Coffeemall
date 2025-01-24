@@ -47,7 +47,7 @@
 								<a th:href="@{/product/productEdit(pid=${m.pid})}">
 									<!-- 이미지 출력 조건문 -->
 									<img th:if="${m.pimgStr != null and #strings.startsWith(m.pimgStr, 'http')}"
-										th:src="${m.pimgStr}" width=50 height=50 />
+										th:src="${m.pimgStr}" width=60 height=60 />
 									<img th:if="${m.pimgStr != null and !#strings.startsWith(m.pimgStr, 'http')}"
 										th:src="@{/product/files/}+${m.pimgStr}" width=50 height=50 />
 								</a>

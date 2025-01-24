@@ -6,7 +6,8 @@
 		select idx.nextval from dual
 	</select>
 
-	<select id="list" resultType="com.majustory.product.ProductVO"> select
+	<select id="list" resultType="com.majustory.product.ProductVO"> 
+	select
 		rownum , K.* from ( select rownum as rnum , P.* from (select pid, pname,
 		pename, pprice, pdesc, pinfo, pimg as pimgStr , psize, cnt from product
 		) P where 1=1 <if test="ch1 == 'pname'">
@@ -17,6 +18,19 @@
 	         ) K 
 		     where rnum >=#{start}
 		 ]]>
+	</select>
+	
+	<select id="list_index" resultType="com.majustory.product.ProductVO">
+	  select pid, 
+	  		 pname,
+		     pename, 
+		     pprice, 
+		     pdesc, 
+		     pinfo, 
+		     pimg as pimgStr , 
+		     psize 
+      from product
+		
 	</select>
 
 	<select id="edit" resultType="com.majustory.product.ProductVO">

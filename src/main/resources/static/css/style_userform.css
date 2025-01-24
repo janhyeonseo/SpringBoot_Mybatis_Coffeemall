@@ -1,0 +1,116 @@
+@charset "EUC-KR";
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.form-container {
+    width: 80%;
+    margin: 50px auto;
+    background: #fff;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+fieldset {
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+legend {
+	text-align: left;
+	font-size: 15px;
+    font-weight: bold;
+    color: rgb(24, 24, 24);
+    margin-bottom: 10px;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+label {
+    width: 20%;
+	font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+    margin-left: 3%;
+	margin-right: 2%;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.phone-row,
+.email-row {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-small {
+    padding: 5px 10px;
+    font-size: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-small:hover {
+    background-color: #0056b3;
+}
+
+.btn-large {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-large:hover {
+    background-color: #0056b3;
+}
+
+.role-select {
+    display: flex;
+    gap: 10px;
+}
+
+.role-select label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.error-message {
+    margin-left: 10px;
+    font-size: 12px;
+    color: red;
+}
+
+

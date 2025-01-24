@@ -3,6 +3,16 @@
 <body>
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 	<div th:replace="~{include/top}"></div>
+
+	<script>
+		function listK() {
+			const form = document.forms['f1'];
+			form.action = "/login/userform";
+			form.method = "get"; // GET 요청
+			form.submit();
+		}
+	</script>
+
 	<section>
 		<br>
 		<div align="center">
@@ -18,13 +28,14 @@
 					</tr>
 					<tr>
 						<td>비밀번호</td>
-						<td><input type=text name=password />
+						<td><input type=password name=password />
 						</td>
 					</tr>
 
 					<tr>
 						<td colspan=2>
-							<input type=submit value="로그인" />
+							<input type="submit" value="로그인" />
+							<input type="button" value="회원가입" onClick="listK()" />
 						</td>
 					</tr>
 

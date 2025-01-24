@@ -64,4 +64,10 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
+	@Override
+	public List<ProductVO> list_index(ProductVO vo) {
+		// TODO Auto-generated method stub
+		return dao.list_index(vo);
+	}
+
 }
