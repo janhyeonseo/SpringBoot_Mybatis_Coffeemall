@@ -45,7 +45,7 @@
 			} else {
 				confirmPasswordError.textContent = "";
 			}
-
+			alert("회원가입 성공" )
 			return isValid;
 		}
 	</script>
@@ -54,7 +54,7 @@
 		<br>
 		<div class="form-container">
 			<h1>회원가입</h1>
-			<form name="signupForm" action="/login/userformOK" method="post" onsubmit="return validateForm()">
+			<form name="signupForm" method="post" action = "/login/userformOK" onsubmit="return validateForm()">
 				<!-- 로그인 정보 -->
 				<fieldset>
 					<legend>로그인 정보</legend>

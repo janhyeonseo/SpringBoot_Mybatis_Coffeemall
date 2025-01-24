@@ -1,53 +1,45 @@
 <html xmlns:th="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-
 <body>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<div th:replace="~{include/top}"></div>
+    <link href="/css/style_login.css" rel="stylesheet" type="text/css" />
+    <div th:replace="~{include/top}"></div>
 
-	<script>
-		function listK() {
-			const form = document.forms['f1'];
-			form.action = "/login/userform";
-			form.method = "get"; // GET 요청
-			form.submit();
-		}
-	</script>
+    <script>
+        function listK() {
+            const form = document.forms['f1'];
+            form.action = "/login/userform";
+            form.method = "get"; // GET 요청
+            form.submit();
+        }
+    </script>
 
-	<section>
-		<br>
-		<div align="center">
+    <section>
+        <br>
+        <div class="form-container">
+            <h1>회원 로그인</h1>
+            <form name="f1" method="post">
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <td>아이디</td>
+                            <td><input type="text" name="username" placeholder="아이디를 입력하세요" required /></td>
+                        </tr>
+                        <tr>
+                            <td>비밀번호</td>
+                            <td><input type="password" name="password" placeholder="비밀번호를 입력하세요" required /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <input type="submit" value="로그인" />
+                                <input type="button" value="회원가입" onClick="listK()" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <br>
+    </section>
 
-			<h1>회원 로그인</h1>
-			<form name="f1" method="post">
-
-				<table border="1">
-					<tr>
-						<td>아이디</td>
-						<td><input type=text name=username />
-						</td>
-					</tr>
-					<tr>
-						<td>비밀번호</td>
-						<td><input type=password name=password />
-						</td>
-					</tr>
-
-					<tr>
-						<td colspan=2>
-							<input type="submit" value="로그인" />
-							<input type="button" value="회원가입" onClick="listK()" />
-						</td>
-					</tr>
-
-				</table>
-
-			</form>
-
-		</div>
-		<br>
-	</section>
-
-	<div th:replace="~{include/bottom::footer}"></div>
+    <div th:replace="~{include/bottom::footer}"></div>
 </body>
-
 </html>

@@ -1,0 +1,99 @@
+@charset "EUC-KR";
+
+/* 기본 설정 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* 폼 컨테이너 */
+.form-container {
+    width: 80%;
+    margin: 30px auto;
+    background: #fff;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* 필드셋 */
+fieldset {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+legend {
+	text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* 폼 행 */
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+label {
+    width: 20%;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+    margin-right: 10px;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+    flex: 1;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #252E40;
+    box-shadow: 0 0 5px rgba(37, 46, 64, 0.3);
+}
+
+textarea {
+    resize: none;
+}
+
+/* 버튼 */
+.btn-large {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #252E40;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    margin: 5px;
+    flex: 1; /* 버튼 크기 균등 배치 */
+}
+
+.btn-large:hover {
+    background-color: #1e2533;
+}

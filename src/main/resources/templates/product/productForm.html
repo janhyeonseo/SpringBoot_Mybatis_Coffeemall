@@ -1,60 +1,62 @@
 <html xmlns:th="http://www.thymeleaf.org">
-
 <body>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
-	<div th:replace="~{include/top}"></div>
-	<section>
-		<br>
-		<div align="center">
 
-			<h1>상품 등록하기</h1>
-			<form name="f1" action="/product/productFormOK" method="post" enctype="multipart/form-data">
+    <link href="/css/style_productform.css" rel="stylesheet" type="text/css" />
+    <div th:replace="~{include/top}"></div>
 
-				<table border="1" width=600>
-					<tr>
-						<td class="td1" width=20%>상품이름</td>
-						<td><input type=text name=pname size=20% /></td>
-						<td class="td1" width=20%>영어이름</td>
-						<td><input type=text name=pename size=20% /></td>
-					</tr>
-					<tr>
-						<td class="td1" width=20%>상품가격</td>
-						<td><input type=text name=pprice size=20% /></td>
-						<td class="td1" width=20%>사이즈</td>
-						<td><input type=text name=psize size=20% /></td>
-					</tr>
+    <section>
+        <br>
+        <div class="form-container">
+            <h1>상품 등록하기</h1>
+            <form name="f1" action="/product/productFormOK" method="post" enctype="multipart/form-data">
+                <!-- 상품 기본 정보 -->
+                <fieldset>
+                    <legend>상품 기본 정보</legend>
+                    <div class="form-row">
+                        <label for="pname">상품이름</label>
+                        <input type="text" id="pname" name="pname" placeholder="상품 이름을 입력하세요" required />
+                    </div>
+                    <div class="form-row">
+                        <label for="pename">영어이름</label>
+                        <input type="text" id="pename" name="pename" placeholder="상품의 영어 이름을 입력하세요" required />
+                    </div>
+                    <div class="form-row">
+                        <label for="pprice">상품가격</label>
+                        <input type="text" id="pprice" name="pprice" placeholder="상품 가격을 입력하세요" required />
+                    </div>
+                    <div class="form-row">
+                        <label for="psize">사이즈</label>
+                        <input type="text" id="psize" name="psize" placeholder="상품 사이즈를 입력하세요" required />
+                    </div>
+                </fieldset>
 
-					<tr>
-						<td class="td1" align="center">주의사항</td>
-						<td colspan="3"><input type=pinfo name=pinfo size=64% />
-						</td>
-					</tr>
+                <!-- 추가 정보 -->
+                <fieldset>
+                    <legend>추가 정보</legend>
+                    <div class="form-row">
+                        <label for="pinfo">주의사항</label>
+                        <input type="text" id="pinfo" name="pinfo" placeholder="상품 주의사항을 입력하세요" />
+                    </div>
+                    <div class="form-row">
+                        <label for="pimg">상품사진</label>
+                        <input type="file" id="pimg" name="pimg" />
+                    </div>
+                    <div class="form-row">
+                        <label for="pdesc">상품상세</label>
+                        <textarea id="pdesc" name="pdesc" rows="5" placeholder="상품에 대한 상세 설명을 입력하세요"></textarea>
+                    </div>
+                </fieldset>
 
+                <!-- 버튼 -->
+                <div class="form-row">
+                    <button type="submit" class="btn-large">상품등록</button>
+                    <button type="reset" class="btn-large">다시작성</button>
+                </div>
+            </form>
+        </div>
+        <br><br>
+    </section>
 
-					<tr>
-						<td class="td1" align="center">상품사진</td>
-						<td colspan="3"><input type=file name=pimg id="pimg" />
-						</td>
-					</tr>
-
-					<tr>
-						<td class="td1" align="center">상품상세</td>
-						<td colspan="3"><textarea cols="65" rows="10" name=pdesc></textarea>
-						</td>
-					</tr>
-
-					<tr>
-						<td colspan=4 align="center"><input type=submit value="상품등록" />
-							&emsp; <input type=reset value="다시작성" /></td>
-					</tr>
-				</table>
-			</form>
-
-		</div>
-		<br><br>
-	</section>
-
-	<div th:replace="~{include/bottom::footer}"></div>
+    <div th:replace="~{include/bottom::footer}"></div>
 </body>
-
 </html>
