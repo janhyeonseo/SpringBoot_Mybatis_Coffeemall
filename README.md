@@ -24,6 +24,61 @@
     </div>
 <br>
 
+# API 명세서
+
+## LoginController
+
+| HTTP Method | URL                 | Description              | Request Params             | Response      |
+|-------------|---------------------|--------------------------|----------------------------|---------------|
+| GET         | /login/loginForm    | 로그인 페이지 조회       | -                          | HTML Page     |
+| POST        | /login/loginFormOK  | 로그인 처리              | `LoginVO` (JSON)           | Redirect URL |
+| GET         | /login/loginSuccess | 로그인 성공 페이지       | -                          | HTML Page     |
+| GET         | /login/failure      | 로그인 실패 페이지       | -                          | HTML Page     |
+| GET         | /login/logOut       | 로그아웃 처리            | -                          | Redirect URL |
+| POST        | /login/userformOK   | 회원 가입 처리           | `LoginVO` (JSON)           | HTML Page     |
+
+---
+
+## ProductController
+
+| HTTP Method | URL                   | Description              | Request Params                  | Response         |
+|-------------|-----------------------|--------------------------|---------------------------------|------------------|
+| GET         | /product/productForm  | 상품 등록 페이지 조회     | -                               | HTML Page        |
+| POST        | /product/productFormOK| 상품 등록 처리            | `ProductVO` (JSON, File Upload)| Redirect URL     |
+| GET         | /product/productList  | 상품 목록 조회            | `start`, `end` (Pagination)    | HTML Page        |
+| GET         | /product/cartList     | 장바구니 목록 조회        | -                               | HTML Page        |
+| POST        | /product/cartInsert   | 장바구니 추가            | `ProductVO` (JSON)             | Redirect URL     |
+| GET         | /product/cartDel      | 장바구니 단일 삭제        | `ProductVO` (JSON)             | HTML Page        |
+| GET         | /product/cartDel2     | 장바구니 여러 개 삭제    | `cid[]` (Array)                | HTML Page        |
+
+---
+
+## StartController
+
+| HTTP Method | URL       | Description          | Request Params | Response      |
+|-------------|-----------|----------------------|----------------|---------------|
+| GET         | /index    | 메인 페이지 조회     | -              | HTML Page     |
+
+---
+
+## ChatGptController
+
+| HTTP Method | URL          | Description               | Request Params         | Response      |
+|-------------|--------------|---------------------------|------------------------|---------------|
+| POST        | /api/chat/ask| ChatGPT 응답 요청         | `prompt` (String)      | HTML Page     |
+
+---
+
+## Security
+
+| Configuration | Description                      | Value                              |
+|---------------|----------------------------------|------------------------------------|
+| `/chatGPT/**` | 관리자만 접근 가능               | Role: ADMIN                       |
+| `/product/**` | 인증된 모든 사용자 접근 가능    | Authenticated                     |
+| `/login/**`   | 일부 페이지는 인증 없이 접근 가능 | `/login/loginform`, `/login/userform` |
+
+
+
 ## 주요 기능 및 역할
 ### 📝 ChatGPT API 통합
 - OpenAI의 GPT-3.5 모델을 사용하여 사용자의 질문에 대한 답변을 제공하는 시스템을 구현.
