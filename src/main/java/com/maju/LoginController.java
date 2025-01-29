@@ -30,7 +30,7 @@ public class LoginController {
 
 	}
 	
-    // 시큐리티 적용시 사용되지 않는다. 
+    // 시큐리티 적용시 사용되지 않음. 
 	@PostMapping("/loginFormOK")
 	String loginFormOK(Model  model , LoginVO vo ){
 		   System.out.println("==> loginFormOK ");	
