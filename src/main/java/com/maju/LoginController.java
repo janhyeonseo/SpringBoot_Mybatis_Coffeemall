@@ -81,7 +81,7 @@ public class LoginController {
         return "login/userform"; 
     }
 	
-	@PostMapping("/userformOK")
+	@PostMapping("/userformOK") 
     public String memberformOK(LoginVO vo) {
 		System.out.println("==> userform ");
 		service.userInsert(vo);
