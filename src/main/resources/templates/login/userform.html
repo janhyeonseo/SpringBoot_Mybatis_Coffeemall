@@ -5,50 +5,71 @@
 	<div th:replace="~{include/top}"></div>
 
 	<script>
-		function validateForm() {
-			const username = document.getElementById('username').value;
-			const usernameError = document.getElementById('usernameError');
+	    document.addEventListener("DOMContentLoaded", function() {
+	    document.getElementById("signupForm").addEventListener("submit", function(event) {
+	        if (!validateForm()) {
+	            event.preventDefault(); // 폼 제출 차단
+	        }
+	    });
+	});
 
-			const password = document.getElementById('password').value;
-			const confirmPassword = document.getElementById('confirmPassword').value;
+	function validateForm() {
+	    const username = document.getElementById('username').value;
+	    const usernameError = document.getElementById('usernameError');
 
-			const passwordError = document.getElementById('passwordError');
-			const confirmPasswordError = document.getElementById('confirmPasswordError');
+	    const password = document.getElementById('password').value;
+	    const confirmPassword = document.getElementById('confirmPassword').value;
 
-			// 아이디 조건 확인 
-			const usernameRegex = /^[a-zA-Z0-9]{6,16}$/;
-			let isValid = true;
-			if (!usernameRegex.test(username)) {
-				usernameError.textContent = "아이디는 6~16자, 영문과 숫자만 가능합니다.";
-				usernameError.style.color = "red";
-				isValid = false;
-			} else {
-				usernameError.textContent = "";
-			}
+	    const passwordError = document.getElementById('passwordError');
+	    const confirmPasswordError = document.getElementById('confirmPasswordError');
 
-			// 비밀번호 조건 확인 
-			const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
+	    const name = document.getElementById('name').value;
+	    const phone = document.getElementById('phone').value;
+	    const email = document.getElementById('email').value;
 
-			if (!passwordRegex.test(password)) {
-				passwordError.textContent = "비밀번호는 8~16자, 문자, 숫자, 특수문자를 포함해야 합니다.";
-				passwordError.style.color = "red";
-				isValid = false;
-			} else {
-				passwordError.textContent = "";
-			}
+	    // 아이디 조건 확인 
+	    const usernameRegex = /^[a-zA-Z0-9]{6,16}$/;
+	    let isValid = true;
 
-			// 비밀번호 확인
-			if (password !== confirmPassword) {
-				confirmPasswordError.textContent = "비밀번호가 일치하지 않습니다.";
-				confirmPasswordError.style.color = "red";
-				isValid = false;
-			} else {
-				confirmPasswordError.textContent = "";
-			}
-			alert("회원가입 성공" )
-			return isValid;
-		}
-	</script>
+	    if (!usernameRegex.test(username)) {
+	        usernameError.textContent = "아이디는 6~16자, 영문과 숫자만 가능합니다.";
+	        usernameError.style.color = "red";
+	        isValid = false;
+	    } else {
+	        usernameError.textContent = "";
+	    }
+
+	    // 비밀번호 조건 확인 
+	    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
+
+	    if (!passwordRegex.test(password)) {
+	        passwordError.textContent = "비밀번호는 8~16자, 문자, 숫자, 특수문자를 포함해야 합니다.";
+	        passwordError.style.color = "red";
+	        isValid = false;
+	    } else {
+	        passwordError.textContent = "";
+	    }
+
+	    // 비밀번호 확인
+	    if (password !== confirmPassword) {
+	        confirmPasswordError.textContent = "비밀번호가 일치하지 않습니다.";
+	        confirmPasswordError.style.color = "red";
+	        isValid = false;
+	    } else {
+	        confirmPasswordError.textContent = "";
+	    }
+
+	    // 모든 검사가 완료된 경우에만 alert 실행
+	    if (isValid) {
+	        alert("신청하는 정보를 확인해 주세요!\n\n" + 
+	              "이름 : " + name + "\n" + 
+	              "휴대전화 : " + phone + "\n" + 
+	              "이메일 : " + email);
+	    }
+
+	    return isValid; // 유효성 검사가 실패하면 false 반환 → 폼 제출 차단
+	}
+ </script>
 
 	<section>
 		<br>
@@ -102,7 +123,7 @@
 					</div>
 					<div class="form-row">
 						<label for="phone">휴대전화</label>
-						<input type="text" id="phone" name="phone" placeholder="010-xxxx-xxxx" required />
+						<input type="text" id="phone" name="phone" placeholder="010xxxxxxxx" required />
 					</div>
 					<div class="form-row">
 						<label for="email">이메일</label>

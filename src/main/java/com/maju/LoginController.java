@@ -30,7 +30,7 @@ public class LoginController {
 
 	}
 	
-    // 시큐리티 적용시 사용되지 않음. 
+    // 시큐리티 적용시 사용되지 않는다. 
 	@PostMapping("/loginFormOK")
 	String loginFormOK(Model  model , LoginVO vo ){
 		   System.out.println("==> loginFormOK ");	
@@ -81,7 +81,7 @@ public class LoginController {
         return "login/userform"; 
     }
 	
-	@PostMapping("/userformOK") 
+	@PostMapping("/userformOK")
     public String memberformOK(LoginVO vo) {
 		System.out.println("==> userform ");
 		service.userInsert(vo);

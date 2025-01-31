@@ -18,7 +18,7 @@ public class StartController {
 		System.out.println("==> StartController 생성자");
 	}
 	
-	@GetMapping("/index") 
+	@GetMapping("/index")
 	void index(Model model){
 		model.addAttribute("li", service.list_index(null));
 	}

@@ -26,7 +26,7 @@ public class SecurityConfig {
 		// hasAnyRole : hasAnyRole("MANAGER", "ADMIN") - 여러 역할을 지정할때.
 		// 1. "/chatGPT/**" 와 "/product/productForm" 는 관리자만 접근
 		// 2. "/product/cartList" 는 ADMIN 와 MEMBER만 접근
-		// 3. "/product/**" 는 인증받은 모든 사람이 접근  
+		// 3. "/product/**" 는 인증받은 모든 사람이 접근
 
 		http.authorizeHttpRequests(authorize -> authorize	              
 	              .requestMatchers("/chatGPT/**","/product/productForm").hasRole("ADMIN")
