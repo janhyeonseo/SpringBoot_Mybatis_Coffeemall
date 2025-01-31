@@ -3,12 +3,12 @@
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 
 <body>
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="/css/style_cartList.css" rel="stylesheet" type="text/css" />
 	<div th:replace="~{include/top}"></div>
 
 	<script type="text/javascript" th:inline="javascript">
-		function delOne(cid) {
-			alert("cid:" + cid)
+		function delOne(cid, pname) {
+			alert("메뉴 '" + pname + "'를 삭제하시겠습니까?")
 			location.href = "/product/cartDel?cid=" + cid
 		}
 
@@ -17,59 +17,67 @@
 			f1.action = "/product/cartDel2"
 		}
 	</script>
-	<section>
-		<br>
-		<div align="center">
-			<h2>장바구니 목록 보기</h2>
-		</div>
-		<div align="center">
+	<section class="cart-container">
 
-			<form name=f1>
-				<table border=1 width=900>
-					<tr align="center">
-						<td>순번</td>
-						<td>상품이미지</td>
-						<td>상품이름</td>
-						<td>상품가격</td>
-						<td>수량</td>
-						<td>취소</td>
-					</tr>
-					<th:block th:if="${li.size() < 1}">
-						<tr align="center">
-							<td colspan="6">구매한 물건이 없습니다!</td>
-						</tr>
-					</th:block>
-					<th:block th:if="${li.size() >= 1}">
-						<tr th:each="m, mStat: ${li} " align="center">
+		<form name="f1">
+			<fieldset>
+				<legend> 내 장바구니</legend>
 
-							<td th:text="${mStat.index}+1"></td>
-							<td><input type=hidden name=cid th:value=${m.cid} />
-								<a th:href="@{/product/productEdit(pid=${m.pid})}">
-									<!-- 이미지 출력 조건문 -->
-									<img th:if="${m.pimgStr != null and #strings.startsWith(m.pimgStr, 'http')}"
-										th:src="${m.pimgStr}" width=60 height=60 />
-									<img th:if="${m.pimgStr != null and !#strings.startsWith(m.pimgStr, 'http')}"
-										th:src="@{/product/files/}+${m.pimgStr}" width=50 height=50 />
-								</a>
-							</td>
-							<td th:text="${m.pname}" ></td>
-							<td th:text="${m.pprice}"></td> 
-							<td th:text="${m.amount}"></td>
-							<td><input type="button" value="취소" th:onClick="delOne([[${m.cid}]])"></td>
+				<table class="cart-table">
+					<thead>
+						<tr>
+							<th>순번</th>
+							<th>상품이미지</th>
+							<th>상품이름</th>
+							<th>상품가격</th>
+							<th>수량</th>
+							<th>취소</th>
 						</tr>
-					</th:block>
+					</thead>
+					<tbody>
+						<th:block th:if="${li.size() < 1}">
+							<tr>
+								<td colspan="6" class="empty-cart">🛒 장바구니가 비어 있습니다!</td>
+							</tr>
+						</th:block>
+
+						<th:block th:if="${li.size() >= 1}">
+							<tr th:each="m, mStat: ${li}">
+								<td th:text="${mStat.index + 1}"></td>
+								<td>
+									<input type="hidden" name="cid" th:value="${m.cid}">
+									<input type="hidden" name="pname" th:value="${m.pname}">
+									<a th:href="@{/product/productEdit(pid=${m.pid})}">
+										<img th:if="${m.pimgStr != null and #strings.startsWith(m.pimgStr, 'http')}"
+											th:src="${m.pimgStr}" class="product-img" />
+										<img th:if="${m.pimgStr != null and !#strings.startsWith(m.pimgStr, 'http')}"
+											th:src="@{/product/files/}+${m.pimgStr}" class="product-img" />
+									</a>
+								</td>
+								<td th:text="${m.pname}"></td>
+								<td th:text="${m.pprice}"></td>
+								<td th:text="${m.amount}"></td>
+								<td>
+									<button type="button" class="delete-btn"
+										th:onClick="delOne([[${m.cid}]], [[${m.pname}]])">🗑</button>
+								</td>
+							</tr>
+						</th:block>
+					</tbody>
 				</table>
+			</fieldset>
 
-				<th:block th:if="${li.size() >= 1}">
-					<div class="kg_pay_btn" th:data-name="마주스토리" th:data-price="${total}" th:data-goodsnum="${mm}">
-						<input type=hidden id=datepicker value="2024-08-02">
-						<button type="button" th:onclick="kg_request_pay()">결제하기</button>&emsp;
-						<input type=submit value="전체삭제" onClick="delK()" /> &emsp;
-						결제금액 : <input type=text th:value=" ${total}" />
-					</div>
-				</th:block>
-			</form>
-		</div>
+			<th:block th:if="${li.size() >= 1}">
+				<div class="cart-actions">
+					<button type="button" class="btn-large pay-btn" th:onclick="kg_request_pay()">💳 결제하기</button>
+					<input type="submit" class="btn-large delete-all-btn" value="🗑 전체삭제" onClick="delK()">
+				</div>
+
+				<div class="total-price">
+					💰 결제금액: <span th:text="${total}"></span> 원
+				</div>
+			</th:block>
+		</form>
 	</section>
 
 	<script th:inline="javascript">
@@ -79,7 +87,7 @@
 
 		function kg_request_pay() {
 			//전달할 데이터 4가지는 필수 값
-			// data-name(상품이름): 3개월무료사용 , data-price(가격): 100  , data-goodsnum(주문번호) : "70001" 
+			// data-name(상품이름), data-price(가격) , data-goodsnum(주문번호) " 
 			var selectedDate = document.getElementById("datepicker").value;
 			var selectedGoodsName = document.querySelector(".kg_pay_btn")
 				.getAttribute("data-name");
@@ -88,6 +96,10 @@
 			var selectedGoodsNum = document.querySelector(".kg_pay_btn")
 				.getAttribute("data-goodsnum");
 
+			if (!selectedGoodsName || !selectedGoodsPrice || !selectedGoodsNum) {
+				alert("결제 정보를 불러오는 데 문제가 발생했습니다. 다시 시도해 주세요.");
+				return;
+			}
 			//kg이니시스 결제 API
 			var IMP = window.IMP; // 생략가능
 			IMP.init('imp33165546'); // 가맹점 식별코드
@@ -97,11 +109,8 @@
 				pg: "html5_inicis",
 				pay_method: "card",
 				merchant_uid: "gpay_" + new Date().getTime(), // 주문번호
-				name: "마주스토리" + " " + selectedGoodsName, // 상품이름
+				name: selectedGoodsName, // 상품이름
 				amount: selectedGoodsPrice, // 상품가격 (숫자 타입)
-				buyer_email: "kk0063@naver.com",
-				buyer_name: "choi young won",
-				buyer_tel: "01050376133"
 			}, function (rsp) { // callback
 				console.log(rsp);
 				if (rsp.success) { //결제 성공시
@@ -110,16 +119,16 @@
 						"mpaynum": rsp.merchant_uid, //결제번호
 						"membernum": "AA00001", //회원번호
 						"mpaymethod": rsp.pay_method, //결제수단
-						"mpayproduct": rsp.name, //헬스장 이름 + 상품이름
+						"mpayproduct": rsp.name, //가게 이름 + 상품이름
 						"mpayprice": rsp.paid_amount, // 결제금액
 						"mpaydate": new Date().toISOString().slice(0, 10), //결제일
-						"mpaygym": "마주스토리", //헬스장 이름
+						"mpaygym": "makeCoffee", //가게 이름
 						"mpayperiod": selectedDate, //상품이용기간
 						"mpaytime": "",
 						"trainername": "",
 						"ggoodsnum": selectedGoodsNum, //상품번호
 						"tgoodsint": null,
-						"gymnum": "B0001" //헬스장 고유번호
+						"gymnum": "B0001" //가게 고유번호
 					}
 					console.log(result);
 

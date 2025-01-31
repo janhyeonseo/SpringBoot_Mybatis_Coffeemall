@@ -1,28 +1,38 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/style_chat.css" rel="stylesheet" type="text/css">
+</head>
 <body>
-<div  th:replace="~{include/top}"></div>
-<section>
-<br>
-<div align="center"  > <h2>ChatGPT  API 사용하기  </h2> </div>
-<div align="center"  > 
+    <div th:replace="~{include/top}"></div>
 
- <form action="/api/chat/ask"   method=post>
- 
- <table border=1>
- <tr> <td> 무엇이든 물어보세요 </td>  <td> <input  type=text name=prompt  size=50> </td> </tr>
- <tr>
-  <td colspan=2  align="center" > 
-    <input  type="submit" value="질문입력" >
-  </td>   
- </tr>  
- </table>
- 
- </form>
-</div>
-<br>
-</section>
+    <div class="chat-container">
+        <h2>ChatGPT로 메뉴 추천 받기</h2>
 
-<div  th:replace="~{include/bottom::footer}"></div>
+        <form action="/api/chat/ask" method="post" class="chat-form">
+            <fieldset>
+                <legend>무엇이든 물어보세요</legend>
+                <div class="form-row">
+                    <label for="prompt">질문</label>
+                    <input type="text" name="prompt" id="prompt" placeholder="ChatGPT에게 질문을 입력하세요." required>
+                </div>
+                <div class="form-actions">
+                    <input type="submit" class="btn-large" value="질문 입력">
+                </div>
+            </fieldset>
+        </form>
+
+        <!-- ChatGPT 답변 영역 -->
+        <div class="chat-response" th:if="${result}">
+            <fieldset>
+                <legend>ChatGPT의 답변</legend>
+                <p th:text="${result}"></p>
+            </fieldset>
+        </div>
+    </div>
+
+    <div th:replace="~{include/bottom::footer}"></div>
 </body>
 </html>

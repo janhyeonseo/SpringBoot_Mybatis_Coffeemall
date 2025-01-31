@@ -10,7 +10,9 @@
 	select
 		rownum , K.* from ( select rownum as rnum , P.* from (select pid, pname,
 		pename, pprice, pdesc, pinfo, pimg as pimgStr , psize, cnt from product
-		) P where 1=1 <if test="ch1 == 'pname'">
+		) P 
+		where 1=1 
+		<if test="ch1 == 'pname'">
 			and pname like '%'||#{ch2}||'%'
 		</if>
 		<![CDATA[
