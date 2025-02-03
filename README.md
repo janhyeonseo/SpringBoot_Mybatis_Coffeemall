@@ -55,7 +55,7 @@ src/
 - **버전 관리:** GitHub
 - **테스트:** JUnit
 -->
-
+## 🛠 기술 스택
 - <p>
     <strong>백엔드 :</strong> &nbsp;
     <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat-square&logo=Spring Boot&logoColor=white">
