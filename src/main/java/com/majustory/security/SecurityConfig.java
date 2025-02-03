@@ -29,10 +29,12 @@ public class SecurityConfig {
 		// 3. "/product/**" 는 인증받은 모든 사람이 접근
 
 		http.authorizeHttpRequests(authorize -> authorize	              
-	              .requestMatchers("/chatGPT/**","/product/productForm").hasRole("ADMIN")
-	              .requestMatchers("/product/cartList").hasAnyRole("ADMIN", "MEMBER")	 
+	              .requestMatchers("/chatGPT/**","/product/productList","/product/cartList")
+	              .hasAnyRole("ADMIN", "MEMBER")
+	              .requestMatchers("/product/productForm").hasRole("ADMIN")	 
 	              .requestMatchers("/product/**").authenticated()
-	              .requestMatchers("/login/loginform","/login/userform").permitAll() // 회원가입 페이지는 인증 없이 접근 가능
+	               // 회원가입 페이지는 인증 없이 접근 가능
+	              .requestMatchers("/login/loginform","/login/userform").permitAll() 
 	              .anyRequest().permitAll())
 				
 		.csrf(csrf -> csrf.disable())

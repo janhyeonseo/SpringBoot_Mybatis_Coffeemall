@@ -7,6 +7,14 @@ body {
   text-align: center;
 }
 
+.info{
+	text-decoration-line: none;
+	margin:1%;
+	margin-right: 19%;
+	text-align: right;
+	display: block;
+}
+
 header {
   display: flex;
   justify-content: space-between; /* 로고와 네비게이션을 좌우로 배치 */
@@ -46,6 +54,7 @@ nav a:hover {
 span a{
 	text-decoration-line: none;
 	color: #252E40;
+	text-align: right;
 }
 
 section {
