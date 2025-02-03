@@ -1,32 +1,165 @@
-# 데이터 크롤링&결제&openAI API를 활용한 커피숍 관리 서비스 
 
-### 💡 서비스 개요
-- 커피숍 제품 관리와 결제 처리, 고객 관리 기능을 제공하는 웹 서비스.
-- 사용자 인증과 권한 관리, 상품 정보 관리, 결제 시스템 통합, 질의응답 등의 기능을 구현하여 보안성과 사용자 편의성을 향상.
+# MakeCoffee ☕️
 
-### 🛠️ 기술 스택
-</div>
-    <div style="text-align: left;">
-    <div> <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white">
-          <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat-square&logo=Spring Boot&logoColor=white">
-          <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=flat-square&logo=Spring Security&logoColor=white">
-          <img src="https://img.shields.io/badge/Mybatis-003496?style=flat-square&logo=Mybatis&logoColor=white">
-          <img src="https://img.shields.io/badge/OpenAPI-004596?style=flat-square&logo=OpenAPI&logoColor=white">
-          <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=Python&logoColor=white">
-          <img src="https://img.shields.io/badge/Selenium-43B02A?style=flat&logo=Selenium&logoColor=white">
-          <br>
-          <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white">
-          <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white">
-          <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white">
-          <img src="https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=Oracle&logoColor=white">
-          <img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white">
-          </div>
+Spring Boot 기반의 웹 애플리케이션으로, 사용자 로그인, 상품 관리, 결제 처리, 그리고 ChatGPT API 연동 기능을 제공합니다.
+
+## 🚀 주요 기능
+
+### 1. 사용자 관리
+- 로그인 및 인증 기능 (`LoginController.java`)
+- 회원 정보 관리
+
+### 2. 상품 관리
+- 상품 목록 조회 및 상세 보기 (`ProductController.java`)
+- 상품 추가, 수정, 삭제 기능
+
+### 3. 결제 처리
+- 결제 데이터 관리 (`InsertMPayDao.java`)
+- 결제 내역 조회
+
+### 4. AI 챗봇 (ChatGPT 연동)
+- OpenAI ChatGPT API를 활용한 챗봇 기능 (`ChatGptController.java`, `ChatGptService.java`)
+- JSON 응답 처리 (`JsonResponse.java`)
+
+## 🏗 프로젝트 구조
+
+```
+src/
+├── main/java/com/maju
+│   ├── LoginController.java
+│   ├── ProductController.java
+│   ├── StartController.java
+│   ├── MakeCoffeeApplication.java
+│   ├── ServletInitializer.java
+│   ├── ChatGPT/
+│   │   ├── ChatGptController.java
+│   │   ├── ChatGptService.java
+│   │   ├── ChatGptStartController.java
+│   │   ├── JsonResponse.java
+│   ├── PortOne/
+│   │   ├── InsertMPayDao.java
+└── resources/
+    ├── application.properties
+    ├── static/
+    ├── templates/
+```
+
+## 🛠 기술 스택
+
+<div style="text-align: left;">
+    <div> 
+        <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white">
+        <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat-square&logo=Spring Boot&logoColor=white">
+        <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=flat-square&logo=Spring Security&logoColor=white">
+        <img src="https://img.shields.io/badge/Mybatis-003496?style=flat-square&logo=Mybatis&logoColor=white">
+        <img src="https://img.shields.io/badge/OpenAPI-004596?style=flat-square&logo=OpenAPI&logoColor=white">
+        <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=Python&logoColor=white">
+        <img src="https://img.shields.io/badge/Selenium-43B02A?style=flat&logo=Selenium&logoColor=white">
+        <br>
+        <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white">
+        <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white">
+        <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white">
+        <img src="https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=Oracle&logoColor=white">
+        <img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white">
     </div>
-<br>
+</div>
 
-# API 명세서
+## ⚙️ 프로젝트 실행 방법
 
-## LoginController
+### 1. 환경 설정
+- Java 17 이상 설치
+- MySQL 또는 Oracle 데이터베이스 설정 (`application.properties` 수정)
+- `application.properties`의 OpenAI API Key 설정
+
+### 2. 실행 방법
+```bash
+./mvnw spring-boot:run
+```
+또는
+```bash
+mvn spring-boot:run
+```
+
+## 🔧 필수 설정 파일
+
+### `application.properties` 예시
+```properties
+spring.application.name=''
+server.port=''
+
+# 오라클 DB 설정
+spring.datasource.driver-class-name=''
+spring.datasource.url=''
+spring.datasource.username=''
+spring.datasource.password=''
+
+# Chat GPT API 키 설정
+openai.api.key=''
+```
+
+## 📜 `pom.xml` 주요 의존성
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.mybatis.spring.boot</groupId>
+    <artifactId>mybatis-spring-boot-starter</artifactId>
+    <version>3.0.3</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+```
+
+## 📜 데이터베이스 모델 (ERD)
+아래는 프로젝트에서 사용된 데이터베이스의 ERD 다이어그램입니다.
+
+![ERD 다이어그램](ERD%20다이어그램.png)
+
+### 📌 테이블 설명
+
+1. **product**: 상품 정보를 관리하는 테이블
+   - `pid`: 상품 ID (PK)
+   - `pname`, `pename`: 상품 이름
+   - `pprice`: 가격
+   - `pdesc`, `pinfo`: 상품 설명 및 정보
+   - `psize`: 크기
+   - `pimg`: 이미지 경로
+   - `cnt`: 재고 수량
+
+2. **member**: 사용자 정보를 저장하는 테이블
+   - `id`: 사용자 ID (PK)
+   - `username`: 사용자 계정명
+   - `password`: 비밀번호
+   - `role`: 사용자 역할 (일반 사용자, 관리자)
+   - `name`, `pimg`: 사용자 정보
+   - `today`: 가입 날짜
+
+3. **cart**: 장바구니 정보를 저장하는 테이블
+   - `cid`: 장바구니 ID (PK)
+   - `pid`: 상품 ID (FK)
+   - `id`: 사용자 ID (FK)
+   - `pname`, `pename`: 상품 이름
+   - `pprice`: 가격
+   - `pimg`: 상품 이미지
+   - `amount`: 수량
+
+4. **InsertMPay**: 결제 정보를 저장하는 테이블
+   - `mid`: 결제 ID (PK)
+   - `id`: 사용자 ID (FK)
+   - `mpaynum`: 결제 번호
+   - `mpayprice`: 결제 금액
+   - `today`: 결제 날짜
+     
+## 📜 API 명세서
+
+
+## API 명세서
+
+### LoginController
 
 | HTTP Method | URL                 | Description              | Request Params             | Response      |
 |-------------|---------------------|--------------------------|----------------------------|---------------|
@@ -39,7 +172,7 @@
 
 ---
 
-## ProductController
+### ProductController
 
 | HTTP Method | URL                   | Description              | Request Params                  | Response         |
 |-------------|-----------------------|--------------------------|---------------------------------|------------------|
@@ -53,7 +186,7 @@
 
 ---
 
-## StartController
+### StartController
 
 | HTTP Method | URL       | Description          | Request Params | Response      |
 |-------------|-----------|----------------------|----------------|---------------|
@@ -61,53 +194,10 @@
 
 ---
 
-## ChatGptController
+### ChatGptController
 
 | HTTP Method | URL          | Description               | Request Params         | Response      |
 |-------------|--------------|---------------------------|------------------------|---------------|
 | POST        | /api/chat/ask| ChatGPT 응답 요청         | `prompt` (String)      | HTML Page     |
 
----
-
-## Security
-
-| Configuration | Description                      | Value                              |
-|---------------|----------------------------------|------------------------------------|
-| `/chatGPT/**` | 관리자만 접근 가능               | Role: ADMIN                       |
-| `/product/**` | 인증된 모든 사용자 접근 가능    | Authenticated                     |
-| `/login/**`   | 일부 페이지는 인증 없이 접근 가능 | `/login/loginform`, `/login/userform` |
-
-
-
-## 주요 기능 및 역할
-### 📝 ChatGPT API 통합
-- OpenAI의 GPT-3.5 모델을 사용하여 사용자의 질문에 대한 답변을 제공하는 시스템을 구현.
-- RestTemplate을 활용하여 API와 통신하고, 응답을 화면에 출력.
-- 사용자가 입력한 프롬프트에 대해 자동으로 답변을 제공하는 기능.
-
-### 📝 PortOne 결제 시스템
-- PortOne 결제 API를 활용하여 결제 처리 기능을 구현.
-- 결제 정보를 데이터베이스에 삽입하는 MyBatis 기반의 DAO 및 서비스 계층을 구축.
-- 결제 성공 및 실패에 따른 리디렉션 처리.
-
-### 📝 Spring Security 적용
-- 애플리케이션에 Spring Security를 적용하여 사용자 인증 및 권한 관리를 구현.
-- 관리자가 필요한 페이지, 특정 역할을 가진 사용자만 접근할 수 있도록 URL 접근 권한 설정.
-- 로그인, 로그아웃, 접근 거부 페이지 처리.
-- `SecurityUserDetailsService`를 통해 데이터베이스에서 사용자 정보를 조회하고 인증 처리.
-
-### 📝 상품 관리 및 결제 처리
-- 상품 정보 입력, 수정 및 삭제 기능을 구현하고, 결제 시스템과의 연동을 통해 사용자가 상품을 구매할 수 있도록 처리.
-  
-### 📝 MVC 패턴 적용
-- Spring MVC를 사용하여 애플리케이션의 구조를 구성하고, 사용자와의 상호작용을 처리.
-- 컨트롤러, 서비스, DAO 계층을 구분하여 유지보수성과 확장성을 높임.
-
-### 📝 관리자 모드와 회원모드 분리
-- 관리자 모드와 회원모드를 분리하여 구매와 관리가 용이하게 구성.
-
-
-### 📝 Selenium과 bs4를 사용한 정보 크롤링
-- Selenium을 사용하여 원하는 정보 및 이미지를 xpath로 크롤링.
-- 상세한 정보 추출을 위해 Selenium으로 추출한 정보를 bs4를 사용해 상세 정보 추출.
 
