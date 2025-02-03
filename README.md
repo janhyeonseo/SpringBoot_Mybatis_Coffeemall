@@ -43,26 +43,70 @@ src/
     ├── static/
     ├── templates/
 ```
-
+<!--
 ## 🛠 기술 스택
+- **백엔드:** Spring Boot, Spring MVC, Spring Security, MyBatis
+- **데이터베이스:** Oracle Database
+- **템플릿 엔진:** Thymeleaf, Thymeleaf Security
+- **결제 시스템:** PortOne 연동
+- **AI 서비스:** OpenAI ChatGPT API
+- **웹 크롤링:** Selenium, BeautifulSoup
+- **프론트엔드:** JavaScript, HTML5, CSS3
+- **버전 관리:** GitHub
+- **테스트:** JUnit
+-->
 
-<div style="text-align: left;">
-    <div> 
-        <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white">
-        <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat-square&logo=Spring Boot&logoColor=white">
-        <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=flat-square&logo=Spring Security&logoColor=white">
-        <img src="https://img.shields.io/badge/Mybatis-003496?style=flat-square&logo=Mybatis&logoColor=white">
-        <img src="https://img.shields.io/badge/OpenAPI-004596?style=flat-square&logo=OpenAPI&logoColor=white">
-        <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=Python&logoColor=white">
-        <img src="https://img.shields.io/badge/Selenium-43B02A?style=flat&logo=Selenium&logoColor=white">
-        <br>
-        <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white">
-        <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white">
-        <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white">
-        <img src="https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=Oracle&logoColor=white">
-        <img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white">
-    </div>
-</div>
+- <p>
+    <strong>백엔드 :</strong> &nbsp;
+    <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat-square&logo=Spring Boot&logoColor=white">
+    <img src="https://img.shields.io/badge/Spring MVC-6DB33F?style=flat-square&logo=Spring&logoColor=white">
+    <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=flat-square&logo=Spring Security&logoColor=white">
+    <img src="https://img.shields.io/badge/MyBatis-003496?style=flat-square&logo=MyBatis&logoColor=white">
+</p>
+
+ 
+- <p>
+    <strong>데이터베이스 :</strong> &nbsp;
+    <img src="https://img.shields.io/badge/Oracle Database-F80000?style=flat-square&logo=Oracle&logoColor=white">
+</p>
+
+ 
+- <p>
+    <strong>템플릿 엔진 :</strong> &nbsp;
+    <img src="https://img.shields.io/badge/Thymeleaf-005F0F?style=flat-square&logo=Thymeleaf&logoColor=white">
+    <img src="https://img.shields.io/badge/Thymeleaf Security-6DB33F?style=flat-square&logo=Thymeleaf&logoColor=white">
+</p>
+
+- <p>
+    <strong>결제 시스템 :</strong> &nbsp; 
+    <img src="https://img.shields.io/badge/PortOne-004596?style=flat-square&logo=PortOne&logoColor=white">
+</p>
+
+- <p>
+    <strong>AI 서비스 :</strong> &nbsp;
+    <img src="https://img.shields.io/badge/OpenAI ChatGPT-004596?style=flat-square&logo=OpenAI&logoColor=white">
+</p>
+
+- <p>
+    <strong>웹 크롤링 :</strong> &nbsp;
+    <img src="https://img.shields.io/badge/Selenium-43B02A?style=flat&logo=Selenium&logoColor=white">
+    <img src="https://img.shields.io/badge/BeautifulSoup-8A2BE2?style=flat-square&logo=Python&logoColor=white">
+</p>
+
+- <p>
+    <strong>프론트엔드 :</strong> &nbsp;
+    <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white">
+    <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white">
+    <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white">
+</p>
+
+- <p>
+    <strong>버전 관리 :</strong> &nbsp;
+    <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white">
+</p>
+
+
+
 
 ## ⚙️ 프로젝트 실행 방법
 
