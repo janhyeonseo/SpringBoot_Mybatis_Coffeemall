@@ -1,5 +1,5 @@
 
-# MakeCoffee ☕️
+# MakeCoffee ☕️ 
 
 Spring Boot 기반의 웹 애플리케이션으로, 사용자 로그인, 상품 관리, 결제 처리, 그리고 ChatGPT API 연동 기능을 제공합니다.
 
